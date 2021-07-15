@@ -17,6 +17,10 @@ c+k： 唤出git commit提交界面
 * ctrl+space+space : 智能补全当前变量名称
 * ctrl+q : 查看帮助文档
 * ctrl+p : 当在函数的括号中使用该快捷键,会显示函数的参数信息
+* ctrl+左键 : 在tab上使用, 可以查看当前目录
+
+
+
 
 * alt+1 : 打开或关闭导航栏
 * alt+home : 临时打开导航栏 在有些小键盘上home键是fn+左箭头, 如果是同级目录直接按下箭头就可以出来文件
@@ -34,6 +38,9 @@ c+k： 唤出git commit提交界面
 * ctrl+alt+shift+t : 弹出重命名窗口
 
 
+
+
+* shift+alt : 按住然后鼠标选择,可以进行区块的选择
 
 # ideavim 设置
 * ctrl+e 变成ide设置
@@ -73,6 +80,10 @@ Pydantic
 
 # 插件
 Key Promoter X  用于提示快捷键
+
+
+* Unresolved function or method
+File > Settings > Editor > Inspections > 然后搜索unresolved
 
 
 

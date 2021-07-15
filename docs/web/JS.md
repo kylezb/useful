@@ -177,6 +177,8 @@
         if(ret){
             console.log(ret)
         }
+        // 如果有值得话直接用数组下标进行访问
+        ret[0] ret[1]
 
     output:
         [
@@ -470,8 +472,10 @@
 
 
 # 16. 常用函数
-## 16.1. encodeURIComponent(***) 用于url的加密
-## 16.2. 
+* encodeURIComponent(***) 用于url的编码
+* encodeURI(***) 整体编码
+
+## 16.2.
 
 
 

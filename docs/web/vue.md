@@ -37,6 +37,7 @@ export default {
           if (!isMatched) {
             callback(new Error('格式不正确'))
           }
+          callback() // 一定要写，不然其它调用可能会有点问题
         }
     }
 }
