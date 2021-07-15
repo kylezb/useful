@@ -37,7 +37,7 @@ c+k： 唤出git commit提交界面
 * ctrl+alt+l : 格式化文件
 * ctrl+alt+shift+t : 弹出重命名窗口
 
-
+* ctrl+shift+alt+insert : 弹出临时文件筐,创建临时文件
 
 
 * shift+alt : 按住然后鼠标选择,可以进行区块的选择
