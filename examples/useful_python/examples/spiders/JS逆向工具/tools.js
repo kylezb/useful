@@ -1,5 +1,3 @@
-
-
 let cropty_js = require("crypto-js");
 
 let md5_abstract = (text) => {
@@ -8,19 +6,17 @@ let md5_abstract = (text) => {
 
 
 function btoa(str) {
-  if (Buffer.byteLength(str) !== str.length)
-    throw new Error('bad string!');
-  return Buffer(str, 'binary').toString('base64');
+    if (Buffer.byteLength(str) !== str.length)
+        throw new Error('bad string!');
+    return Buffer(str, 'binary').toString('base64');
 }
 
-function atob(str){
+function atob(str) {
     return Buffer.from(str, `base64`).toString(`binary`)
 }
 
 
-
-
-export {md5_abstract};
+export {md5_abstract, atob, btoa};
 
 
 

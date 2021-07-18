@@ -1,4 +1,5 @@
 import json
+from urllib.parse import quote, urlencode
 
 import requests
 import time
@@ -12,13 +13,14 @@ headers = {
 def main():
     money = 0
     number = 0
-    ts = str(int(time.time()))
+    ts = str(int(time.time())+ 100000)
+    # ts = '1626698981'
     nodejs = os.popen('node decode.js ' + ts + '000')
     m = nodejs.read().replace('\n', '') + '丨' + ts
     nodejs.close()
     for page in range(1, 6):
         url = 'http://match.yuanrenxue.com/api/match/1?page=' + str(page) + '&m=' + m
-        ret = requests.get(url, headers = headers)
+        ret = requests.get(url, headers=headers)
         response = json.loads(ret.text)
         for each in response['data']:
             money += each['value']
