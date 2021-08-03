@@ -887,4 +887,10 @@ yum search 名字
 # 25. wsl windows  win10 上linux安装和使用[连接](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package)
 
 
+# strapi破解
+在ee.js文件中直接返回true
+然后
+yarn build --clean
+
+
 [返回上一级](../../README.md)
