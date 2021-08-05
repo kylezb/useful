@@ -18,7 +18,7 @@ c+k： 唤出git commit提交界面
 * ctrl+q : 查看帮助文档
 * ctrl+p : 当在函数的括号中使用该快捷键,会显示函数的参数信息
 * ctrl+左键 : 在tab上使用, 可以查看当前目录
-
+* ctrl+l : 跳到下一个查找出
 
 
 
@@ -29,9 +29,16 @@ c+k： 唤出git commit提交界面
 2. 还可通过ctrl+shift+f进行路径搜索
 ```
 * alt+` : 打开版本控制
-* alt+shift+up/down : 将当前行和上下换位置, 可以和ctrl+w进行一起使用, 选中行后一起移动
+* alt+q : 可以直接查看当前在哪个函数中  
 * alt+enter : 自动导入. 在__init__的时候使用,可以直接添加类变量.
 * alt+shift+f10 : 弹出run的对话框
+* alt+shift+up/down : 将当前行和上下换位置, 可以和ctrl+w进行一起使用, 选中行后一起移动
+* alt+f1 : 弹出select in 窗口. 该窗口可以将文件在指定的上下文中显示. 比如目录树, 文件窗口.
+* alt+f2 : html预览
+
+
+
+
 
 * ctrl+alt+o : 删除不用的引入
 * ctrl+alt+l : 格式化文件
@@ -84,6 +91,18 @@ Key Promoter X  用于提示快捷键
 
 * Unresolved function or method
 File > Settings > Editor > Inspections > 然后搜索unresolved
+
+
+* 自定义
+
+alt+f : 打开file菜单
+alt+r : 打开run菜单
+alt+e : 打开最近文件
+
+f1 : 调试step into
+f2 : 调试step over
+f3 : resume
+f4 : 查找下一个
 
 
 
