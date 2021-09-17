@@ -734,6 +734,16 @@ create database  hope CHARSET=UTF8;
 总结：推荐使用常规代理服务（每日ip不限量,ip短期有效的套餐），自己维护ip代理池。
 	  转发代理服务限制并发数量，1-2个爬虫跑没有问题，但是爬虫多了每秒的并发量会很大，购买对应的套餐会很贵。
 ```
+* [自建代理squid](https://zhuanlan.zhihu.com/p/104468795)
+* [squid配置密码](https://www.cnblogs.com/blxt/p/14501176.html)
+```
+http_access allow auth_users 一开始设置错误, 一定要设置成这个
+```
+* squid日志
+```
+下载sarg: https://sourceforge.net/projects/sarg/
+https://blog.51cto.com/fccwcom/1683394
+```
 
 
 # 23. proxychains使用

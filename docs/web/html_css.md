@@ -79,14 +79,17 @@
     transform: translate(0,100px);
 ```
 
-## 文本多余用省略号，隐藏多余文本
-```css
-    word-break: break-all;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow: hidden;
+## [文本多余用省略号，隐藏多余文本](https://codepen.io/Guiyu92/pen/MWowrZQ)
+
+
+## 属性
+* overflow-wrap: 是用来说明当一个不能被分开的字符串太长而不能填充其包裹盒时，为防止其溢出，浏览器是否允许这样的单词中断换行。
+*  word-break: 指定了怎样在单词内断行。
 ```
+break-all: 会在单词中间进行断行
+break-word: 只会以word进行断行
+```
+
 
 
 
