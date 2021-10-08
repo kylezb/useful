@@ -79,6 +79,16 @@
     transform: translate(0,100px);
 ```
 
+
+
+## inline inline-block
+```
+inline: 可以多个标签存在一行，对宽高属性值不生效，完全靠内容撑开宽高。
+ inline-block: 结合的行内和块级的优点，既可以设置长宽，可以让padding和margin生效，又可以和其他行内元素并排。
+```
+
+
+
 ## [文本多余用省略号，隐藏多余文本](https://codepen.io/Guiyu92/pen/MWowrZQ)
 
 
