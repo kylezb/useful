@@ -482,7 +482,10 @@
 # sleep 等待5s
 ```
     const Promise = require('bluebird')
-    Promise.delay(5)
+    await Promise.delay(5*1000)
+    
+    或者直接用原生的Promise
+    await new Promise(res => setTimeout(res, 5000));
 ```
 
 

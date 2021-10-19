@@ -79,13 +79,12 @@
     transform: translate(0,100px);
 ```
 
-## 文本多余用省略号，隐藏多余文本
-```css
-    word-break: break-all;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow: hidden;
+
+
+## inline inline-block
+```
+inline: 可以多个标签存在一行，对宽高属性值不生效，完全靠内容撑开宽高。
+ inline-block: 结合的行内和块级的优点，既可以设置长宽，可以让padding和margin生效，又可以和其他行内元素并排。
 ```
 # flex 布局
 ```javascript
@@ -97,6 +96,20 @@ flex-grow: 剩余空间扩展比列, 如果排列后有剩余的空间, 会暗�
 flex-shrink: 子元素缩小比列, 0为不允许缩小
 
 ```
+
+
+## [文本多余用省略号，隐藏多余文本](https://codepen.io/Guiyu92/pen/MWowrZQ)
+
+
+## 属性
+* overflow-wrap: 是用来说明当一个不能被分开的字符串太长而不能填充其包裹盒时，为防止其溢出，浏览器是否允许这样的单词中断换行。
+*  word-break: 指定了怎样在单词内断行。
+```
+break-all: 会在单词中间进行断行
+break-word: 只会以word进行断行
+```
+
+
 
 
 # 3. html
