@@ -87,7 +87,16 @@
     -webkit-line-clamp: 5;
     overflow: hidden;
 ```
+# flex 布局
+```javascript
+justify-content: 用来存在剩余空间时,设置间距的方式
+align-items: 元素在交叉轴上的对齐方式, 如果设置了wrap,有多行, 会每一行都会以该方式对齐
+align-content: 元素整体在交叉轴上的方式对齐
+flex-basis: 设置在主轴上的基准值
+flex-grow: 剩余空间扩展比列, 如果排列后有剩余的空间, 会暗战设置的该值分配扩展比列. 如果有2个元素设置了该值, 第一个为1,第二个为3, 表明第一个站1分, 第二个占3份.
+flex-shrink: 子元素缩小比列, 0为不允许缩小
 
+```
 
 
 # 3. html

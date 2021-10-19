@@ -2,13 +2,7 @@
 
 
 
-function test(...args){
-
-    console.log(args)
-}
-
-
-test(1,2,3,4)
+console.log(Buffer.from('asdf', 'base64').toString(`binary`))
 
 
 
