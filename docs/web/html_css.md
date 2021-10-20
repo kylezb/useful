@@ -112,6 +112,7 @@ break-word: 只会以word进行断行
 
 
 
+
 # 3. html
 ## 3.1. <h>：代表标题， h1主标题， h2副标题，依次类推。
 
@@ -149,6 +150,30 @@ break-word: 只会以word进行断行
 ### 3.8.1. textContent 设置或返回节点及其后代的文本内容。  
 
 
+
+
+# tailwindcss
+## 在css文件中定义属性可以写在@tailwind utilities 之前, 这样后续样式px-10这些可用, 如下, 如果写在btn后面,那么px-10就没有用
+```
+css文件
+@tailwind utilities;
+.btn{
+   @apply inline-block
+}
+
+html文件中
+<div class="btn px-10"> </div>
+
+```
+
+## 为了避免上诉的情况可以告诉tailwindcss该css在哪层,用@layer
+```
+  @layer components {
+      .btn{
+       @apply inline-block
+    }
+  }
+```
 
 
 
