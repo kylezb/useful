@@ -7,11 +7,11 @@
 传入参数:context包含:
     1. params, 从 getStaticPaths 获取的数据
     2. preview
-    3. previewData 
+    3. previewData
     4. locale
     5. locales 
     6. defaultLocale 
-    7. redirect 
+    7. redirect  
         redirect : {
         destination: '/',
         permanent: false,
