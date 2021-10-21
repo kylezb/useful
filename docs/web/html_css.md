@@ -86,7 +86,16 @@
 inline: 可以多个标签存在一行，对宽高属性值不生效，完全靠内容撑开宽高。
  inline-block: 结合的行内和块级的优点，既可以设置长宽，可以让padding和margin生效，又可以和其他行内元素并排。
 ```
+# flex 布局
+```javascript
+justify-content: 用来存在剩余空间时,设置间距的方式
+align-items: 元素在交叉轴上的对齐方式, 如果设置了wrap,有多行, 会每一行都会以该方式对齐
+align-content: 元素整体在交叉轴上的方式对齐
+flex-basis: 设置在主轴上的基准值
+flex-grow: 剩余空间扩展比列, 如果排列后有剩余的空间, 会暗战设置的该值分配扩展比列. 如果有2个元素设置了该值, 第一个为1,第二个为3, 表明第一个站1分, 第二个占3份.
+flex-shrink: 子元素缩小比列, 0为不允许缩小
 
+```
 
 
 ## [文本多余用省略号，隐藏多余文本](https://codepen.io/Guiyu92/pen/MWowrZQ)
@@ -99,6 +108,7 @@ inline: 可以多个标签存在一行，对宽高属性值不生效，完全靠
 break-all: 会在单词中间进行断行
 break-word: 只会以word进行断行
 ```
+
 
 
 
@@ -140,6 +150,30 @@ break-word: 只会以word进行断行
 ### 3.8.1. textContent 设置或返回节点及其后代的文本内容。  
 
 
+
+
+# tailwindcss
+## 在css文件中定义属性可以写在@tailwind utilities 之前, 这样后续样式px-10这些可用, 如下, 如果写在btn后面,那么px-10就没有用
+```
+css文件
+@tailwind utilities;
+.btn{
+   @apply inline-block
+}
+
+html文件中
+<div class="btn px-10"> </div>
+
+```
+
+## 为了避免上诉的情况可以告诉tailwindcss该css在哪层,用@layer
+```
+  @layer components {
+      .btn{
+       @apply inline-block
+    }
+  }
+```
 
 
 
