@@ -34,3 +34,7 @@ OP_EQUALVERIFY 88 [比较堆栈上面的2个数据是否相等]
    OP_CHECKSIG ac [验证签名消息]
 ```
 
+# MPT
+```
+叶子节点: 是一个键值对(key, value) key是原始内容的一种
+```
