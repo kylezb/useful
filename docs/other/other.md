@@ -894,6 +894,29 @@ yum search 名字
 ```
 
 
+# centos 设置systemctl启动任务
+```angular2html
+1. 在 /etc/systemd/system下创建server文件 或/lib/systemd/system/目录下
+2. 创建nodebot.server文件, 内容如下
+[Unit]
+Description=Process Monitoring and Control Daemon
+After=rc-local.service nss-user-lookup.target
+
+[Service]
+Type=forking
+WorkingDirectory=/www/steamconfirmbot-server
+ExecStart=/usr/bin/npm start
+ExecStop=/usr/bin/npm stop
+
+[Install]
+WantedBy=multi-user.target
+
+3. 然后systemctl enable nodebot 就可以开机启动了
+```
+
+
+
+
 # 25. wsl windows  win10 上linux安装和使用[连接](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package)
 
 
