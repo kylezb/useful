@@ -896,7 +896,7 @@ yum search 名字
 
 # centos 设置systemctl启动任务
 ```angular2html
-1. 在 /etc/systemd/system下创建server文件
+1. 在 /etc/systemd/system下创建server文件 或/lib/systemd/system/目录下
 2. 创建nodebot.server文件, 内容如下
 [Unit]
 Description=Process Monitoring and Control Daemon

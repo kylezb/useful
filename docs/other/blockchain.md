@@ -38,3 +38,30 @@ OP_EQUALVERIFY 88 [比较堆栈上面的2个数据是否相等]
 ```
 叶子节点: 是一个键值对(key, value) key是原始内容的一种
 ```
+
+
+
+# Solidity 合约编写
+## 一些全局变量
+```
+1. msg
+    msg.sender: 发起合约调用的以太坊地址
+    msg.value: 调用方发送的以太币(wei单位)
+    msg.data: 调用合约传入的数据
+    msg.sig: 传输数据的前4个字节, 这是一个函数选择器
+    当一个合约调用另外一个合约的时候, msg的值会发全部发生变化, 体现出新调用方的信息.可以使用delegatecall函数进行阻止该操作.
+    
+2. tx
+    tx.graprice: 调用交易的gas价格
+    tx.origin: 发起这个交易的外部账户地址, 不安全
+3. block
+    block.coinbase: 当前区块的矿工地址.
+    block.difficulty: 当前区块的工作量证明
+    block.gaslimit: 
+    block.number: 区块编号
+    block.timestamp: 矿工写入的时间戳
+```
+## 地址类对象的方法和属性
+```
+address.balance
+```
