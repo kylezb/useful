@@ -79,7 +79,7 @@
   - [17.3. 开启防火墙：systemctl stop firewalld.service](#173-开启防火墙systemctl-stop-firewalldservice)
   - [17.4. 关闭防火墙：systemctl stop firewalld.service](#174-关闭防火墙systemctl-stop-firewalldservice)
 - [18. git使用](#18-git使用)
-  - [443 访问不了代理](#443-访问不了代理)
+  - [18.1. 443 访问不了代理](#181-443-访问不了代理)
 - [19. 阿里云](#19-阿里云)
 - [20. shell 基本操作](#20-shell-基本操作)
   - [20.1. shell中"2>&1"含义](#201-shell中21含义)
@@ -105,7 +105,11 @@
 - [28. curl的使用](#28-curl的使用)
   - [28.1. 发送特定header curl -H Host:whoami.docker.localhost http://127.0.0.1](#281-发送特定header-curl--h-hostwhoamidockerlocalhost-http127001)
   - [28.2.](#282)
-- [创建一个简单的端口监听服务](#创建一个简单的端口监听服务)
+- [29. 创建一个简单的端口监听服务](#29-创建一个简单的端口监听服务)
+- [30. apt yum 使用](#30-apt-yum-使用)
+- [31. centos 设置systemctl启动任务](#31-centos-设置systemctl启动任务)
+- [32. wsl windows  win10 上linux安装和使用连接](#32-wsl-windows--win10-上linux安装和使用连接)
+- [33. strapi破解](#33-strapi破解)
 
 
 
@@ -667,7 +671,7 @@ create database  hope CHARSET=UTF8;
 
 　　　　git push origin :refs/tags/tag-name
 ```
-## 443 访问不了代理
+## 18.1. 443 访问不了代理
 ```
   git config --global http.proxy "127.0.0.1:4780"
 ```
@@ -876,7 +880,7 @@ https://blog.csdn.net/king_cpp_py/article/details/81192624
 ## 28.2. 
 
 
-# 创建一个简单的端口监听服务
+# 29. 创建一个简单的端口监听服务
 ```
   监听8181端口：
   socat -v tcp-l:8181,fork exec:"/bin/cat"
@@ -887,14 +891,14 @@ https://blog.csdn.net/king_cpp_py/article/details/81192624
 
 
 
-# 24. apt yum 使用
+# 30. apt yum 使用
 ```
 sudo apt-cache search 查找
 yum search 名字
 ```
 
 
-# centos 设置systemctl启动任务
+# 31. centos 设置systemctl启动任务
 ```angular2html
 1. 在 /etc/systemd/system下创建server文件 或/lib/systemd/system/目录下
 2. 创建nodebot.server文件, 内容如下
@@ -917,10 +921,10 @@ WantedBy=multi-user.target
 
 
 
-# 25. wsl windows  win10 上linux安装和使用[连接](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package)
+# 32. wsl windows  win10 上linux安装和使用[连接](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package)
 
 
-# strapi破解
+# 33. strapi破解
 在ee.js文件中直接返回true
 然后
 yarn build --clean

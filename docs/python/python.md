@@ -90,6 +90,9 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
     pyenv activate name  切换到name虚拟环境中
     pyenv deactivate   推出虚拟环境
     pyenv virtualenv-delete name 删除name环境
+    
+    window下激活python虚拟环境:
+    Set-ExecutionPolicy RemoteSigned
 ```
 ## 常用命令
 ```
@@ -107,12 +110,12 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
 ```
 
 
-# 常见错误
+**# 常见错误
 ## sys.stderr.write(f"ERROR: {exc}")
 ```
    python2升级pip后报错：
    解决：sudo easy_install pip==20.3.4
-```
+```**
 
 
     
