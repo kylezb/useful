@@ -82,5 +82,17 @@ break-word: 只会以word进行断行
 ```
 
 
-## 
+## 深度搜索class
+```css
+/* 修改element样式, 在<style scoped>中使用, 可以不污染其他样式*/
+/deep/ .el-input {
+    margin-bottom: 10px;
+  }
+```
+
+## 子class定位
+```css
+/*选取formItem 下的el-form-item__content*/
+.formItem  .el-form-item__content
+```
 
