@@ -1,11 +1,24 @@
 
 
 
+# 基础语法
+## : @ v-model
+```
+1. v-on 缩写 @ , 用于事件
+2. v-bind 缩写 : , 用户变量和值得绑定
+3. v-model, 变量的双向绑定
+```
+
+## 双花括号
+```
+{{}} 用于解析值
+```
+
 
 
 # elementui 使用
 
-* 给表单添加校验
+##给表单添加校验
 ```vue
 <el-form ref="dataForm" :model="form" :rules="rules" label-width="250px">
     <el-form-item  label="aa" prop="pickup_page"> 

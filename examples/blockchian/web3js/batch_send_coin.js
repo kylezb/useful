@@ -44,7 +44,7 @@ let yourData = web3.eth.abi.encodeFunctionCall({
         type: 'bytes32',
         name: '_uniqueId'
     } ]
-}, [ [ "0xdd783744B4AeE7be6ecac8e5f48AC3Dce3287470", "0xCE328e331c3F142FfdaB15C1E0A3bf32858c7893", "0xF2FC45AAe8dB881Ec31b1621D9EbfecC609023F7" ],
+}, [ ["0xdd783744B4AeE7be6ecac8e5f48AC3Dce3287470", "0xCE328e331c3F142FfdaB15C1E0A3bf32858c7893", "0xF2FC45AAe8dB881Ec31b1621D9EbfecC609023F7" ],
     [ '200000000000000000', '100000000000000000', '100000000000000000' ],
     unique ]);
 

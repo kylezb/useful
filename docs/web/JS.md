@@ -475,7 +475,6 @@
 * encodeURIComponent(***) 用于url的编码
 * encodeURI(***) 整体编码
 
-## 16.2.
 
 
 
@@ -488,6 +487,26 @@
     await new Promise(res => setTimeout(res, 5000));
 ```
 
+
+# commonjs 和 es6的 import 和 export
+## commonjs 的 import 和 export
+```js
+module.exports = {a,b,c}
+exports.counter = counter;
+var b = require('b');
+```
+## es6的import和export
+```js
+export var firstName = 'Michael';
+export var lastName = 'Jackson';
+export var year = 1958;
+
+// 或者
+export { firstName, lastName, year };
+
+import { firstName, lastName, year } from './profile.js';
+import { lastName as surname } from './profile.js';
+```
 
 [返回主目录](../../README.md)
 

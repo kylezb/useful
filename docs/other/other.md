@@ -107,7 +107,7 @@
   - [28.2.](#282)
 - [29. 创建一个简单的端口监听服务](#29-创建一个简单的端口监听服务)
 - [30. apt yum 使用](#30-apt-yum-使用)
-- [31. centos 设置systemctl启动任务](#31-centos-设置systemctl启动任务)
+- [31. centos 设置systemctl启动任务 开机重启 开机启动](#31-centos-设置systemctl启动任务-开机重启-开机启动)
 - [32. wsl windows  win10 上linux安装和使用连接](#32-wsl-windows--win10-上linux安装和使用连接)
 - [33. strapi破解](#33-strapi破解)
 
@@ -898,10 +898,10 @@ yum search 名字
 ```
 
 
-# 31. centos 设置systemctl启动任务
+# 31. centos 设置systemctl启动任务 开机重启 开机启动
 ```angular2html
 1. 在 /etc/systemd/system下创建server文件 或/lib/systemd/system/目录下
-2. 创建nodebot.server文件, 内容如下
+2. 创建nodebot.service文件, 内容如下 一定要以service结尾, 不然找不到文件
 [Unit]
 Description=Process Monitoring and Control Daemon
 After=rc-local.service nss-user-lookup.target
