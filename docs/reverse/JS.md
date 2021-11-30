@@ -124,10 +124,12 @@ $(".输入框的classname")
 
 # 7. chrome 中技巧
 
+## 可以在dom元素上打断点
+## 在控制台打印的东西可以直接定位到
+
 * 7.1. 在控制台输入copy(变量)，可以直接复制变量。
 * Network中Initiator可以查看发请求的流程，可通过该流程定位打断点。
 * 常用函数翻译
-
 ```js
 function btoa(str) {
   if (Buffer.byteLength(str) !== str.length)
