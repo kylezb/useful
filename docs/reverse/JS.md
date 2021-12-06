@@ -74,6 +74,13 @@ $(".输入框的classname")
 ```
   Function.prototype.constructor=function(){};
 ```
+## 在控制台的定义的函数也可debugger
+```js
+a = function(){
+    debugger
+    console.log('a')
+}
+```
 
 # 4. nodejs
 
