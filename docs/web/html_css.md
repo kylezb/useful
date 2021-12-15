@@ -92,6 +92,40 @@ html文件中
   }
 ```
 
+## 查看tailwind齐全的配置文档
+```
+npx tailwindcss init tailwind-full.config.js --full
+```
+
+## 实时查看编译的css
+```
+文件是被编译到build.css下的
+npm run postcss:watch
+```
+
+## 3.0特性
+```
+1. aspect-*** 横纵比值
+2. snap-center 滚动对齐 
+3. 使用file修饰符
+    <input type="file" class="block w-full text-sm text-gray-500
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-violet-50 file:text-violet-700
+      hover:file:bg-violet-100
+    "/>
+4. open当 a <details>or<dialog>元素处于打开状态时，使用修饰符有条件地添加样式：
+    <details class="open:bg-white open:ring-1 open:ring-black/5 open:shadow-lg p-6 rounded-lg" open>
+    <summary class="text-sm leading-6 text-gray-900 font-semibold select-none">
+      Why do they call it Ovaltine?
+    </summary>
+    <div class="mt-3 text-sm leading-6 text-gray-600">
+      <p>The mug is round. The jar is round. They should call it Roundtine.</p>
+    </div>
+  </details>
+5. Arbitrary properties
+```
 
 
 

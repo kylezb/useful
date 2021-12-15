@@ -508,6 +508,42 @@ import { firstName, lastName, year } from './profile.js';
 import { lastName as surname } from './profile.js';
 ```
 
+# 空值运算符  leftExpr ?? rightExpr
+```js
+if(value??'' !== ''){
+    
+}
+
+// 等价于
+if(value !== null && value !== undefined && value !== ''){
+    
+}
+```
+
+# prototype __proto__ constructor
+```
+1. 我们需要牢记两点：①__proto__和constructor属性是对象所独有的；② prototype属性是函数所独有的，因为函数也是一种对象，所以函数也拥有__proto__和constructor属性。
+
+2. __proto__属性的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的__proto__属性所指向的那个对象（父对象）里找，一直找，直到__proto__属性的终点null，再往上找就相当于在null上取值，会报错。通过__proto__属性将对象连接起来的这条链路即我们所谓的原型链。
+
+3. prototype属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即f1.__proto__ === Foo.prototype。
+
+4. constructor属性的含义就是指向该对象的构造函数，所有函数（此时看成对象了）最终的构造函数都指向Function
+
+chrome 中的[[Prototype]] 个人理解为指向的是上一级的prototype
+比如:
+let a = {}
+a.__proto__ === Object.prototype
+
+所有的函数都可以看成是构造函数Function()的new操作的实例化对象。那么，Function可以看成是调用其自身的new操作的实例化的结果
+所以，如果Function作为实例对象，其构造函数是Function，其原型对象是Function.prototype
+console.log(Function.__proto__ === Function.prototype);//true
+console.log(Function.prototype.constructor === Function);//true
+console.log(Function.prototype === Function.prototype);//true
+如果Function.prototype作为实例对象的话，其原型对象是什么呢？和前面一样，所有的对象都可以看成是Object()构造函数的new操作的实例化结果。所以，Function.prototype的原型对象是Object.prototype，其原型函数是Object()
+console.log(Function.prototype.__proto__ === Object.prototype);//true
+```
+
 [返回主目录](../../README.md)
 
 

@@ -3,7 +3,7 @@
 # 获取数据
 * getStaticProps(context) 
 ```
-服务端运行的函数
+服务端运行的函数, 在构建时候生成所有数据
 传入参数:context包含:
     1. params, 从 getStaticPaths 获取的数据
     2. preview
@@ -81,7 +81,7 @@
 
 * getServerSideProps() 
 ```
-服务端渲染函数
+服务端渲染函数, 在每回请求的时候生成数据
 参数和getStaticProps类似, 多以下几个:
     1. req
     2. res
@@ -98,3 +98,34 @@
 
 # 样式
 * 全局样式需要在page下创建_app.js进行导入
+
+## _app.js
+```
+1. 定义页面通用布局
+2. 给页面注入额外公共数据
+3. 导入全局样式、通用错误处理等
+```
+
+## _document.js
+```
+1. 只会在服务端渲染时调用
+
+```
+
+
+## link
+```
+import Link from 'next/link'
+
+内部链接跳转使用
+<Link href="/about" />
+```
+
+## useRouter
+```
+import { useRouter } from 'next/router'
+const router = useRouter()
+console.log(router.pathname)  
+
+output: /about
+```
