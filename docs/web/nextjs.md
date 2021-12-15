@@ -129,3 +129,9 @@ console.log(router.pathname)
 
 output: /about
 ```
+
+## 使用配置中的内容
+```
+
+```
+
