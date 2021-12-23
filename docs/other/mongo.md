@@ -138,6 +138,8 @@
     以下shopId 是ObjectId类型的, 需要试用$oid来导出
     mongoexport -h 127.0.0.1 --port 27017 -d steamconfirmbot -c markettasks --type=csv -f asset.market_name -q '{"shopId":{"$oid": "613043eeb074b233ade96e44"}}' -o ./out.csv
 
+    根据日期导出
+    mongoexport -d fiscans -c herotrades --type=json --query='{"updatedAt":{"$gt":{ "$date": "2021-12-18T00:00:00.001Z" }}}' -o herotrades.json 
 
 ```
 
