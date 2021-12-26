@@ -131,7 +131,17 @@ output: /about
 ```
 
 ## 使用配置中的内容
-```
+``` js
+# 在next.config.js文件中配置
+module.exports = {
+    publicRuntimeConfig: {
+        API_URL: process.env.API_URL,
+    },
+}
 
+# 使用
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
+publicRuntimeConfig.API_URL
 ```
 
