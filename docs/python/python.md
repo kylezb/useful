@@ -117,6 +117,12 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
    解决：sudo easy_install pip==20.3.4
 ```**
 
+## _ctypes
+CentOS7 编译时出现
+Failed to build these modules:
+_ctypes
+安装libffi-devel依赖包即可: yum install libffi-devel
+
 
     
 [返回上一级](../../README.md)
