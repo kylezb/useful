@@ -65,6 +65,9 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
     centos:
     yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel -y
     yum install libffi-devel -y
+    
+    $ sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel 
+
 
     2.输入命令:
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
@@ -115,13 +118,22 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
 ```
    python2升级pip后报错：
    解决：sudo easy_install pip==20.3.4
-```**
+```
 
 ## _ctypes
+```
 CentOS7 编译时出现
 Failed to build these modules:
 _ctypes
 安装libffi-devel依赖包即可: yum install libffi-devel
+```
+
+## Could not build the ssl module!
+```
+1. 下载ssl 模块: https://www.openssl.org/source/  或者直接yum install openssl
+2. yum install openssl-devel
+```
+
 
 
     
