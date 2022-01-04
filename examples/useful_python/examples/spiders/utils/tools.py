@@ -40,7 +40,18 @@ def md5(text):
 
 
 class MyAES(object):
-    def __init__(self, key):
+    def __init__(self, key, padding_type=1):
+        '''
+
+        :param key:
+        :param padding_type: 0为zeros填充, 1为pk5, 2为pk7
+        '''
+        if padding_type == 1:
+            self.padding_fun = self.add_to_16_pk5
+        elif padding_type == 0:
+            self.padding_fun = self.add_to_16_zeros
+        elif padding_type == 2:
+            self.padding_fun = self.add_to_16_pk5
         self.key = key.encode('utf-8')
         pass
 
@@ -53,16 +64,18 @@ class MyAES(object):
         text = text + ('\0' * add)
         return text.encode('utf-8')
 
-    def aes_encrypt_ecb(self, text, is_ret_base64=False):
-        mode = AES.MODE_ECB
-        # text = self.add_to_16_zeros(text)
-        cryptos = AES.new(self.key, mode)
-        # cipher_text = cryptos.encrypt(text)
-        # print(cipher_text)
+    @staticmethod
+    def add_to_16_pk5(text):
         pad = lambda s: (s + (16 - len(s) % 16) * chr(
             16 - len(s) % 16))
         raw = pad(str(text))
-        cipher_text = cryptos.encrypt(raw.encode('utf8'))
+        return raw.encode('utf-8')
+
+    def aes_encrypt_ecb(self, text, is_ret_base64=False):
+        mode = AES.MODE_ECB
+        text = self.padding_fun(text)
+        cryptos = AES.new(self.key, mode)
+        cipher_text = cryptos.encrypt(text)
         if is_ret_base64:
             return b2a_base64(cipher_text).decode().strip()
         else:
