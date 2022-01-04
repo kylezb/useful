@@ -2,8 +2,8 @@ import hashlib
 import os
 import sqlite3
 import urllib
-
-
+from Crypto.Cipher import AES
+from binascii import b2a_hex, a2b_hex, b2a_base64, a2b_base64
 
 
 def get_cookie(host='.taobao.com'):
@@ -38,18 +38,41 @@ def md5(text):
     return md5_ed
 
 
-def common_header():
-     headers = {
-        'authority': "acc.maimai.cn",
-        'cache-control': "max-age=0,no-cache",
-        'origin': "https://acc.maimai.cn",
-        'upgrade-insecure-requests': "1",
-        'content-type': "application/x-www-form-urlencoded",
-        'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
-        'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-        'referer': "https://acc.maimai.cn/login",
-        'accept-encoding': "gzip, deflate, br",
-        'accept-language': "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-    }
 
-     return headers
+class MyAES(object):
+    def __init__(self, key):
+        self.key = key.encode('utf-8')
+        pass
+
+    @staticmethod
+    def add_to_16_zeros(text):
+        if len(text.encode('utf-8')) % 16:
+            add = 16 - (len(text.encode('utf-8')) % 16)
+        else:
+            add = 0
+        text = text + ('\0' * add)
+        return text.encode('utf-8')
+
+    def aes_encrypt_ecb(self, text, is_ret_base64=False):
+        mode = AES.MODE_ECB
+        # text = self.add_to_16_zeros(text)
+        cryptos = AES.new(self.key, mode)
+        # cipher_text = cryptos.encrypt(text)
+        # print(cipher_text)
+        pad = lambda s: (s + (16 - len(s) % 16) * chr(
+            16 - len(s) % 16))
+        raw = pad(str(text))
+        cipher_text = cryptos.encrypt(raw.encode('utf8'))
+        if is_ret_base64:
+            return b2a_base64(cipher_text).decode().strip()
+        else:
+            return b2a_hex(cipher_text).decode().strip()
+
+    def aes_decode_ecb(self, text,is_base64=False):
+        mode = AES.MODE_ECB
+        cryptor = AES.new(self.key, mode)
+        if is_base64:
+            plain_text = cryptor.decrypt(a2b_base64(text))
+        else:
+            plain_text = cryptor.decrypt(a2b_hex(text))
+        return bytes.decode(plain_text).rstrip('\0')

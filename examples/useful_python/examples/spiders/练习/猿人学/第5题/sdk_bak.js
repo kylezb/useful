@@ -2766,13 +2766,12 @@ var _0x183a1d = -0x67452302;
 var _0xcfa373 = 0x10325476;
 var _0x4e96b4 = {
     '_$6_': 8821003647,
-    '_$tT': -717253467,
+    '_$tT': -172015004,
     '_$Jy': 461512024
 } // 是个window对象
 var b64pad = 1
 
 var _0x25e0a5, _0x3073c8 = null;
-let cur_time = null
 
 function _0x32032f(_0x520fdf, _0x13921d, _0x1af9d5, _0x4a2311, _0xb6d40a, _0x1d58da, _0x361df0) {
     return _0xaaef84(_0x13921d ^ _0x1af9d5 ^ _0x4a2311, _0x520fdf, _0x13921d, _0xb6d40a, _0x1d58da, _0x361df0);
@@ -2852,8 +2851,6 @@ function _0x11a7a2(_0x193f00, _0x1cfe89) {
     } catch (_0x15bf3f) {
         _0x4e96b4['_$6_'] = 0x2421603;
     }
-
-
     for (_0x1badc3 = 0x0; _0x1badc3 < _0x193f00[_$UH[0x6c]]; _0x1badc3 += _0x42fb36)
         _0x38ca59 = _0x3e0c38,
             _0x431764 = _0xdb4d2c,
@@ -2969,76 +2966,13 @@ function _0x474032(_0x233f82, _0xe2ed33, _0x3229f9) {
     // console.log(_0x41873d(_0x233f82), _0x37614a(_0x233f82))
     return _0xe2ed33 ? _0x3229f9 ? v(_0xe2ed33, _0x233f82) : y(_0xe2ed33, _0x233f82) : _0x3229f9 ? _0x41873d(_0x233f82) : _0x37614a(_0x233f82);
 }
+// _0x4e96b4['_$Jy'] = _0x2d5f5b();
+// _0x4e96b4['_$tT'] = _0x2d5f5b() - _0x12eaf3();
 
-
-function getCookie() {
-    let cookies = 0
-    let time1 = 0
-    let time2 = 0
-    let text = []
-    for (let i = 0; i < 5; i++) {
-        _0x4e96b4['_$Jy'] = Jys[i]
-        _0x4e96b4['_$tT'] = tTs[i]
-        if (i === 0) {
-            cur_time = new Date().getTime()
-            // cur_time = 1641285469333
-        } else if (i >= 1 && i <= 3) {
-            _0x4e96b4['_$Jy'] = cur_time
-        }
-        if (i !== 4) {
-            cookies = _0x474032(parseInt(cur_time / 1000) * 1000)
-        } else {
-            _0x4e96b4['_$6_'] = -389564586
-            cookies = _0x474032(cur_time)
-        }
-        text.push(cookies)
-        if (i < 4) {
-            for(let t = 0; t<1000000; t++){
-
-            }
-            cur_time = new Date().getTime()
-            // await new Promise(res => setTimeout(res, 200));
-            // cur_time = 1641285506004
-            time1 = cur_time
-            time2 = parseInt(cur_time / 1000) * 1000
-        }
-
-    }
-    return [ time1, time2, cookies, text.join() ]
+function test(t){
+    let cookies = _0x474032(t)
+    return cookies
 }
 
 
-function getCookie2() {
-    let cookies = 0
-    let time1 = 0
-    let time2 = 0
-    let text = []
-    for (let i = 0; i < 5; i++) {
-
-        cur_time = test_times1[i]
-        _0x4e96b4['_$Jy'] = Jys[i]
-        _0x4e96b4['_$tT'] = tTs[i]
-        if (i === 4) {
-            _0x4e96b4['_$6_'] = -389564586 // 每回不一样
-            cookies = _0x474032(cur_time)
-        } else {
-            cookies = _0x474032(parseInt(cur_time / 1000) * 1000)
-        }
-        text.push(cookies)
-    }
-
-
-    return text
-}
-
-let test_times1 = [ 1641284667000 , 1641284669000 , 1641284670000 , 1641284670000 , 1641284675388   ]
-let Jys = [ 461512024 , 1641284669255 , 1641284670053 , 1641284670671 , -405537848 ]
-let tTs = [ -172015004, -717253467, -717253467, -717253467, -660478335 ]
-
-// console.log(getCookie2())
-// console.log(getCookie().then(ret => console.log))
-// getCookie().then(ret => console.log(ret))
-
-console.log(getCookie())
-
-
+console.log(test(1641277967000))

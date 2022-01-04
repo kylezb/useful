@@ -23,6 +23,17 @@
 解决方法: 使用session进行header的顺序固定
 ```
 
+# 第5题
+
+```text
+类型: cookie中的m参数和RM4hZBv0dDon443M参数加密
+概要: 其中m参数直接采用扣代码的方式就可以弄出来, 不过m参数会生成5次, 每回生成需要的全局变量都不相同. 且生成5次的结果会组成一个字符串, 用于RM4hZBv0dDon443M参数的AES, ECB加密, 加密的密码为最后一回生成m的完整时间戳的base64, 然后取前16字节, 大概为MTY0MTI4NzkzMzUw. m参数最后取值为最后一次的生成
+    tips: 下回看到密码是MTY0MTI4NzkzMzUw类似的, 可以猜测是时间戳base64
+
+
+解决方法: 模拟参数+aes ecb加密
+```
+
 # 第13题
 
 ```text
