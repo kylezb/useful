@@ -69,10 +69,43 @@ $(".输入框的classname")
   重写之后，点击X关闭f12窗口（切记不要刷新页面，因为刷新的话相当于重新加载一遍，刚才的重写函数也就没了意义），关闭之后再重新打开f12
 ```
 
-## 3.3. 将constructor函数设置为空
+## 3.3. 一些常用过debugger脚本
 
-```
-  Function.prototype.constructor=function(){};
+```javascript
+
+
+
+// 将constructor函数设置为空
+Function.prototype.constructor_bak = Function.prototype.constructor
+Function.prototype.constructor=function(x){
+  if(x !== 'debugger'){
+      return Function.prototype.constructor_bak(x)
+  }
+};
+
+// Function 函数清空
+f_bak = Function
+Function=function(x){
+    console.log(x, 'function')
+    if(x !== 'debugger'){
+        return f_bak(a)
+    }
+}
+
+// eval执行debugger检测
+eval_bak = eval
+eval=function(x){
+    if(x !== 'debugger'){
+        return eval_bak(x)
+    }
+    return ''
+}
+
+// 定时函数清空
+setInterval=function(){}
+
+
+
 ```
 ## 在控制台的定义的函数也可debugger
 ```js

@@ -37,13 +37,7 @@
 ```text
 
 
-过debugger 重写setInterval
-setInterval_back = setInterval
-setInterval = function (a, b){
-    if(a.toString('yuanrenxue_161') < 0){
-        setInterval_back(a, b)
-    }
-}
+可以再脚本执行前将js注入(script断点)
 
 
 
