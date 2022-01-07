@@ -199,4 +199,11 @@ function atob(str) {
 ```
 
 
+# call 和 apply
+```text
+第一个参数是this, 修改接下来运行环境的this
+apply的第二个参数是数组, call是常规的用逗号分割开来的.
+```
+
+
 

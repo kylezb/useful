@@ -1,0 +1,14 @@
+{
+  "name": "ob",
+  "version": "1.0.0",
+  "description": "",
+  "main": "decode_obfuscator0606.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.16.7"
+  }
+}
