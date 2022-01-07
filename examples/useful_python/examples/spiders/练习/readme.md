@@ -37,6 +37,32 @@
 ```text
 
 
+过debugger
+
+Function.prototype.constructor_bak = Function.prototype.constructor
+Function.prototype.constructor=function(x){
+  if(x !== 'debugger'){
+      return Function.prototype.constructor_bak(x)
+  }
+};
+f_bak = Function
+Function=function(x){
+    console.log(x, 'function')
+    if(x !== 'debugger'){
+        return f_bak(a)
+    }
+}
+setInterval=function(){}
+
+eval_bak = eval
+eval=function(x){
+    debugger
+    if(x !== 'debugger'){
+        return eval_bak(x)
+    }
+    return ''
+}
+
 可以再脚本执行前将js注入(script断点)
 
 
