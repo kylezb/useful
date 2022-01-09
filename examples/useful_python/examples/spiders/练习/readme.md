@@ -35,7 +35,14 @@
 ```
 # 第10题
 ```text
+概要: url中有个m的加密参数
 
+加密参数m生成流程:
+1. 首页html的加载https://match.yuanrenxue.com/match/10
+2. 加载完首页会请求2个接口.
+    /stati/mu/rsnkw2ksph : 该接口返回了一串js在首页的html中进行了解密, 然后eval, 重新的open函数就在该返回的类容中执行.
+    /api/offset   : eval中执行的时候会有_yrxCxm['A' + 'c' + 'G' + 'e']的值的生成, 第一回的值是该接口返回的, 后续该值是通过每回接口请求生成的.
+3. 发送请求的时候重写了xhr的open函数.
 
 过debugger
 
@@ -64,6 +71,21 @@ eval=function(x){
 }
 
 可以再脚本执行前将js注入(script断点)
+
+
+
+等待研究的问题
+将if转成switch
+
+_yrxCxm[ // 值得第二回生成地方
+Object.defineProperty(window, 'EBfC', {
+    set: function(val){
+        debugger
+        console.log(val)
+    }
+})
+
+set 函数如何正确返回?
 
 
 

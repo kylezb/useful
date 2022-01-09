@@ -206,4 +206,22 @@ apply的第二个参数是数组, call是常规的用逗号分割开来的.
 ```
 
 
+# 扣代码心得
+```javascript
+1. 遇到如果函数没有传参数的直接使用返回值看看. (可以将值替换到源码中看运行结果)
+2. 
+```
+
+
+
+
+window.btoa = window.btoa ? window.btoa : function btoa(str) {
+    var buffer;
+    if (str instanceof Buffer) {
+        buffer = str;
+    } else {
+        buffer = Buffer.from(str.toString(), 'binary');
+    }
+    return buffer.toString('base64');
+}
 
