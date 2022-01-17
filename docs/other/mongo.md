@@ -117,6 +117,8 @@
             $match：匹配条件
             $unwind：拆分字段
         ```
+      // 统计账号aaa的price和
+    db.buy_history.aggregate( [{ $match : { "account_name":"aaa" }},{ $group: { _id: null, count: { $sum: "$price" } } }] );
       
       
 
