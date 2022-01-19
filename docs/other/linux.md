@@ -17,3 +17,8 @@ ln -s <path to the file/folder to be linked> <the path of the link to be created
 unlink <path-to-symlink>
 即使符号链接是文件夹形式的，也不要在前面加 "/"，如果加了 "/"，Linux 会把它当成是一个目录，然而 unlink 是无法删除目录的。
 ```
+
+# 返回上一层目录
+```
+cd -
+```

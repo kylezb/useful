@@ -444,6 +444,11 @@
   }
   #以 /index/ 开头的请求，如果链接的状态为 404。则会匹配到 @index_error 这条规则上。 
 ```
+## 在线配置网站
+```text
+https://nginxconfig.io/
+https://www.digitalocean.com/community/tools/nginx?domains.0.php.php=false&domains.0.reverseProxy.reverseProxy=true&domains.0.routing.root=false&global.app.lang=ru
+```
 
 ## 8.3. try_files
 ```
@@ -670,6 +675,18 @@ create database  hope CHARSET=UTF8;
 　　2. 删除远程tag
 
 　　　　git push origin :refs/tags/tag-name
+
+  # 本地未提交的和远程合并
+    git stash save 'message'
+    git stash list 查看当前stash中的内容
+    git stash pop 将当前stash中的内容弹出，并应用到当前分支对应的工作目录上。
+    git stash apply 将堆栈中的内容应用到当前目录，不同于git stash pop，该命令不会将内容从堆栈中删除，也就说该命令能够将堆栈的内容多次应用到工作目录中，适应于多个分支的情况。
+    git stash drop + 名称 从堆栈中移除某个指定的stash
+    git stash clear 清除堆栈中的所有 内容
+    git stash show 查看堆栈中最新保存的stash和当前目录的差异。
+    git stash branch 从最新的stash创建分支。
+    
+    
 ```
 ## 18.1. 443 访问不了代理
 ```
@@ -928,6 +945,24 @@ WantedBy=multi-user.target
 在ee.js文件中直接返回true
 然后
 yarn build --clean
+
+
+# node 安装
+```text
+1. 直接下载node
+ln -s /root/files/node_v12.22.9/bin/npm /usr/bin/npm
+ln -s /root/files/node_v12.22.9/bin/npx /usr/bin/npx
+ln -s /root/files/node_v12.22.9/bin/node /usr/bin/node
+
+2. 对于全局安装的模块
+ln -s /root/file/node.js/lib/node_modules/pm2/bin/pm2 /usr/local/bin
+```
+
+#
+requests 库的proxies 中 http和https
+
+
+
 
 
 [返回上一级](../../README.md)
