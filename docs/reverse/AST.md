@@ -8,11 +8,15 @@
 
 * 在线代码混淆
     * https://obfuscator.io/
+    * https://astexplorer.net/
 
 # 混淆环境
 
 * npm install esprima estraverse escodegen -S
 
+# AST还原需要安装的包
+* npm install @babel/parser @babel/traverse @babel/generator @babel/types
+* 
 # 逆向大纲
 
 * hello world，console.log 混淆解密
@@ -435,6 +439,9 @@ path.scope // 当前代码所在的作用域, 比如遍历到了函数内的一�
 
 ```js
  // Parse 函数有个sourceType参数, 需要设置为module, 如果不设置, 那么出现import的话会报错
+let ast_code = parse(js_code, {
+    // sourceType: "module",   // 不加这句话的时候，如果解析的AST里面包含 import 等一些写法的话，就会报错。
+});
 ```
 
 # types 库: 用于生成节点

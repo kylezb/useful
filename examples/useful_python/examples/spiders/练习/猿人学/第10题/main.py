@@ -27,6 +27,7 @@ f = open('sdk_1.js', 'r')
 sdk_1 = f.read()
 sdk_1 += _ts
 cp = execjs.compile(sdk_1)
+# 将rsnkw2ksph接口返回的类容解密, 解密方法其实是每个字符串依次减去一个固定的值
 exec_ret = cp.call('decode_ts', yuanrenxue_59)
 print('***********')
 # print(exec_ret)
@@ -40,6 +41,8 @@ pattern1 = re.compile(r"_yrxC2_=(\d+) \+ _yrxCxm(\['.'\+'.'\+'.'\+'.'\])")
 pattern2 = re.compile(r"_yrxmbl=(\d+) \+ _yrxCxm(\['.'\+'.'\+'.'\+'.'\])")
 pattern3 = re.compile(r"return (\d+) \+ _yrxCxm(\['.'\+'.'\+'.'\+'.'\])")
 
+
+# 提取rsnkw2ksph接口返回的类容, 每回的rsnkw2ksph接口返回的类容中有一些值会变, 需要将这些值放入扣的代码中
 offset_name = pattern1.search(exec_ret)[2]
 offset_name = re.sub(r'\W', '', offset_name)
 value1 = int(pattern1.search(exec_ret)[1])

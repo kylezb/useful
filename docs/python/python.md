@@ -135,6 +135,18 @@ _ctypes
 ```
 
 
+# requests 的一些用法
+## session的使用
+```text
+session = requests.Session()
+session.headers.update(headers)
+```
+
+## 错误处理
+```
+1. Error--requests.exceptions.ProxyError: 该报错为系统代理原因. 手动设置代理, 或者如下设置都可以
+session.trust_env = False
+```
 
     
 [返回上一级](../../README.md)
