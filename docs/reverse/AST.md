@@ -5,10 +5,10 @@
 * 参考链接
     * https://www.jianshu.com/p/47d9b2a365c5
 
-
-* 在线代码混淆
-    * https://obfuscator.io/
-    * https://astexplorer.net/
+    
+# [ob混淆](https://obfuscator.io/)
+# [在线AST](https://astexplorer.net/)
+# [节点详解](https://github.com/babel/babylon/blob/master/ast/spec.md)
 
 # 混淆环境
 
@@ -442,7 +442,18 @@ path.getSibling(path.key+1) // path.key是个字符串的时候貌似没有意�
 
 path.inList // let a = [1,2,3,4] 判断当前是否在数组中, 在数组中path.key为 0, 1, 2...
 
+path.isIfStatement() // 判断当前path的类型, 不推荐, 推荐使用types进行节点类型的判断
 
+```
+
+# path.node
+```javascript
+// 如何获取当前节点所对应的源代码
+const generator = require("@babel/generator").default;
+let {code} = generator(node);
+
+//删除节点，使用系统的 delete 方法
+delete path.node.init; // path的删除是path.remove()
 ```
 
 # parse
@@ -473,6 +484,11 @@ eval(member_decode_js);
 ```
 
 # scope
+## 简单理解
+```
+一个函数就是一个作用域
+一个变量就是一个绑定, 依附在作用域是哪个
+```
 ```js
 遍历节点的时候可以path.scope 
 // 当前代码所在的作用域, 比如遍历到了函数内的一段赋值, 使用path.scope会返回函数处的AST

@@ -15,12 +15,13 @@ var jscode = fs.readFileSync('origin.js').toString()
 //     '}'
 
 const ast = parser.parse(jscode);
-
+// console.log(JSON.stringify(ast))
 
 function replaceifstate2block(path) {
     // 对alternate是IfStatement套一个blockStatement
     let alternate_path = path.get('alternate');
     let node = alternate_path.node;
+    if(!path.isIfStatement()) return
     if (!t.isIfStatement(node)) return;
     alternate_path.replaceWith(t.blockStatement([ node ]))
 }
