@@ -419,20 +419,30 @@ const visitor = {
 ## 遍历的时候的path对象
 ```js
 path.node // 获取当前节点
+path.parent // 返回父节点, 是一个node
 path.stop() //停止递归遍历
 path.replaceWith(types.valueToNode('123')) // 替换节点
 path.replaceWithSourceString(...) // 节点替换为源码字符串
 path.remove() //删除节点
 result = path.findParent(function(result) {return result.isSwitchStatement}) // 向上查找满足回调函数的节点并返回节点
-path.find // 类似 findParent, 但是包含当前节点
+path.find((result)=>{}) // 类似 findParent, 但是包含当前节点
 path.getFunctionParent() // 向上找函数
-path.getStatementParent() // 
-path.getSibling(path.key+1) // 获取同级的第几个节点, 这的path.key+1 表示获取下一个节点
+path.getStatementParent() //
 path.container() // 获取当前容器节点, 比如如果遍历到数组中的数字的时候, 这时候可以通过这个方法获取数组节点
 path.evaluate() // 获取到引用的值, 或者直接计算表达式, 比如 let a = 10; b = a; 这时候可以获取到b的值
     (path.evaluate().confident && path.evaluate().value) // 如果节点可以计算那么显示该值, 通过这种方式可以实现引用的替换
 
 path.scope // 当前代码所在的作用域, 比如遍历到了函数内的一段赋值, 使用path.scope会返回函数处的AST
+path.get(key) // 获取子节点, key为字符串, 可以用.进行分隔
+path.parentPath // 获取上一级路径
+
+// 在数组中, 获取同级的第几个节点, 这的path.key+1 表示获取下一个节点
+path.getSibling(path.key+1) // path.key是个字符串的时候貌似没有意义
+
+
+path.inList // let a = [1,2,3,4] 判断当前是否在数组中, 在数组中path.key为 0, 1, 2...
+
+
 ```
 
 # parse
@@ -446,7 +456,9 @@ let ast_code = parse(js_code, {
 
 # types 库: 用于生成节点
 ```js
-
+// 1. 用来判断节点类型
+let node = path.node;
+if (!types.isIfStatement(node)) return;
 ```
 
 
@@ -466,5 +478,53 @@ eval(member_decode_js);
 // 当前代码所在的作用域, 比如遍历到了函数内的一段赋值, 使用path.scope会返回函数处的AST
 path.scope.path.toString() // 还原当前scope的代码
 ```
+
+
+
+# 一些常见情况
+## BlockStatement
+```javascript
+// BlockStatement 中的body是一个数组
+// 对应代码
+{
+  a=10;
+  b=20;
+}
+// 对应ast
+let ast = {
+    body: {
+        type: 'BlockStatement',
+        body: [
+            ExpressionStatement, // 对应a=10
+            ExpressionStatement, // 对应a=20
+        ]
+    }
+}
+```
+## IfStatement
+```javascript
+// 对应代码
+if(a>10){
+    a += 1
+} else {
+    a += 2
+}
+// 对应AST
+let ast = {
+    body: {
+        type: 'IfStatement',
+        test: { // if中的测试结果
+            type: 'BinaryExpression' // 会有多种情况, 还会有UnaryExpression
+        },
+        consequent: { // 如果结果为真的代码片段
+            type: '***' // 对应{a+=1}
+        },
+        alternate: { // 结果为假的代码片段, 也就是else中
+            type: '***' // 对应{a+=2}
+        }
+    }
+}
+```
+
 
 [返回上一级](../../README.md)

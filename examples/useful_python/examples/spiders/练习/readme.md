@@ -35,7 +35,7 @@
 ```
 # 第10题
 ```text
-概要: url中有个m的加密参数
+概要: url中有个m的加密参数, 参考(https://github.com/skygongque/match-yuanrenxue/tree/master/match10)
 
 加密参数m生成流程:
 1. 首页html的加载https://match.yuanrenxue.com/match/10
@@ -79,7 +79,10 @@ eval=function(x){
 1. 通过重写eval函数, 在eval中加入断点, 可以很容易的找到接口返回的rsnkw2ksph数据转换成的eval代码
 2. rsnkw2ksph接口返回的数据, 解密方法其实是每个字符串的ASCII依次减去一个值, 唯一需要注意的是, 这个值的生成和html返回的某个变量有关. 该题是yuanrenxue_59变量, 每回html页面该变量不同
 3. 本地环境的搭建, 用于接口分析和固定的调试环境:
-    1. 本地返回html, 注意, 需要同设置的cookie一并返回, 因为有些cookie会用于这回请求的其他接口数据. 代码的格式胡也要注意下
+    1. 本地返回html, 注意, 需要同设置的cookie一并返回, 因为有些cookie会用于这回请求的其他接口数据. 代码的格式化也要注意下
+    2. 执行的eval函数内容也可以替换一下
+    3. 将ast代码的if else流程转换为switch, 在一些适当位置加上debugger断点进行调试, 这样每回进入的时候都可以断点住. eval函数的控制台的断点会在刷新后不存在.
+    
 
 
 等待研究的问题
