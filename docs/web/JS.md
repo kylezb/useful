@@ -544,6 +544,12 @@ console.log(Function.prototype === Function.prototype);//true
 console.log(Function.prototype.__proto__ === Object.prototype);//true
 ```
 
+# (0 , function)(param) 
+```javascript
+简单来说就是改变了function的this指向, 将this指向了全局
+https://blog.csdn.net/qq_39446719/article/details/103838706
+```
+
 [返回主目录](../../README.md)
 
 

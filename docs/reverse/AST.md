@@ -9,7 +9,7 @@
 # [ob混淆](https://obfuscator.io/)
 # [在线AST](https://astexplorer.net/)
 # [节点详解](https://github.com/babel/babylon/blob/master/ast/spec.md)
-
+# [@babel/types文档](https://babeljs.io/docs/en/babel-types)
 # 混淆环境
 
 * npm install esprima estraverse escodegen -S
@@ -422,12 +422,16 @@ path.node // 获取当前节点
 path.parent // 返回父节点, 是一个node
 path.stop() //停止递归遍历
 path.replaceWith(types.valueToNode('123')) // 替换节点
+path.replaceInline(nodes)// 替换节点
 path.replaceWithSourceString(...) // 节点替换为源码字符串
 path.remove() //删除节点
-result = path.findParent(function(result) {return result.isSwitchStatement}) // 向上查找满足回调函数的节点并返回节点
-path.find((result)=>{}) // 类似 findParent, 但是包含当前节点
+result = path.findParent(function(result) {return result.isSwitchStatement()}) // 向上查找满足回调函数的节点并返回节点
+path.find((result)=>{p.isFunction()}) // 类似 findParent, 但是包含当前节点
 path.getFunctionParent() // 向上找函数
 path.getStatementParent() //
+path.getAncestry() // 获取所有父节点
+path.isAncestor(...) // 判断当前节点是否是参数节点的祖先
+path.isDescendant(...) // 判断当前节点是否是参数节点的子孙
 path.container() // 获取当前容器节点, 比如如果遍历到数组中的数字的时候, 这时候可以通过这个方法获取数组节点
 path.evaluate() // 获取到引用的值, 或者直接计算表达式, 比如 let a = 10; b = a; 这时候可以获取到b的值
     (path.evaluate().confident && path.evaluate().value) // 如果节点可以计算那么显示该值, 通过这种方式可以实现引用的替换
@@ -443,6 +447,24 @@ path.getSibling(path.key+1) // path.key是个字符串的时候貌似没有意�
 path.inList // let a = [1,2,3,4] 判断当前是否在数组中, 在数组中path.key为 0, 1, 2...
 
 path.isIfStatement() // 判断当前path的类型, 不推荐, 推荐使用types进行节点类型的判断
+
+path.insertAfter(nodes)
+path.insertBefore(nodes) // 插入节点后面, 这2个一般用于[]节点类型, 比如BlockStatement的body中, 或者let a = 10; VariableDeclaration 下的declarations中使用, 遍历到了VariableDeclaration, insertBefore
+
+path.parent // 父节点
+path.parentPath // 父路径
+path.parent===path.parentPath.node
+
+// 在当前节点下遍历其他节点
+path.traverse(...)
+
+path.getAllPrevSiblings() // 获取所有前兄弟节点
+path.getAllNextSiblings() // 获取所有后兄弟节点
+
+
+path.evaluate() // 计算表达式的值
+const {confident, value} = path.evaluate(); // confident为true时, value就是计算出来的节点
+
 
 ```
 
@@ -493,8 +515,32 @@ eval(member_decode_js);
 遍历节点的时候可以path.scope 
 // 当前代码所在的作用域, 比如遍历到了函数内的一段赋值, 使用path.scope会返回函数处的AST
 path.scope.path.toString() // 还原当前scope的代码
+path.scope.dump() // 打印应当前作用域
+path.scope.rename(oldName, newName, block) // 变量重命名,会修改所有的变量绑定
+path.scope.getBinding(name) // 获取name的绑定
+path.scope.getBinding(name).referenced // 是否会被引用
+path.scope.getBinding(name).constantViolations //  被修改信息信息记录
+path.scope.getBinding(name).referencePaths // 获取当前所有绑定路径
+```
+## 绑定
+```javascript
+path.scope.bindings
+console.log('类型：', binding_.kind)
+console.log('定义：', binding_.identifier)
+console.log('是否为常量, 不被修改：', binding_.constant)
+console.log('被修改信息信息记录', binding_.constantViolations.toString())
+console.log('是否会被引用：', binding_.referenced)
+console.log('被引用次数', binding_.references)
+console.log('被引用信息NodePath记录', binding_.referencePaths[0].parentPath.toString())
 ```
 
+
+# 删除节点
+```javascript
+1. delete path.node.extras
+2. path.remove()
+3. path.node.body.pop()// pop 是删除数组类型的, 删除数组的最后一项, 比如花括号中有3行语句, 删除的是第三行的
+```
 
 
 # 一些常见情况
