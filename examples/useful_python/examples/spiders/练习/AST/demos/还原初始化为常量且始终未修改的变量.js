@@ -14,14 +14,43 @@ function d()
 `;
 let ast = parser.parse(jscode);
 const visitor = {
-    "VariableDeclarator"(path){
-        let _bindings = path.scope.bindings
-        for(let name in _bindings){
-            let singleBinding = _bindings[name];
-            if(singleBinding.references > 0){
-                console.log(singleBinding.referencePaths)
-            }
+    "VariableDeclarator"(path) {
+        // let _bindings = path.scope.bindings
+
+        let {id,init} = path.node;
+        if (!path.node.init || !t.isIdentifier(path.node.id)) {
+            // 如果没有值, 或者不是Identifier类型的, 不考虑
+            return
         }
+
+        let initPath = path.get("init")
+
+        if (initPath.isUnaryExpression({operator: "+"}) ||
+            initPath.isUnaryExpression({operator: "-"})) {// -5或者 +"3" 也可以算作是字面量
+            if (!t.isLiteral(init.argument)) return;
+        }
+        //如果初始值非Literal节点或者Identifier节点，不做还原
+        //有时候为MemberExpression节点时，也可以还原，视情况而论
+        else if (!initPath.isLiteral() &&
+            !initPath.isIdentifier()) {
+            return;
+        }
+
+        // 在有值得情况才进行替换
+        // let initValue = path.node.init.value
+        let rightInit = path.node.init
+        let name = path.node.id.name
+        let _binding = path.scope.getBinding(name)
+        if (_binding?.references > 0 && _binding?.constant === true) {
+            // 没有被修改, 且被引用了, 替换引用的变量
+            let referencePaths = _binding.referencePaths
+            for (let rPath of referencePaths) {
+                rPath.replaceInline(rightInit)
+            }
+            path.remove()
+        }
+
+
     }
 
     // "Identifier": {
