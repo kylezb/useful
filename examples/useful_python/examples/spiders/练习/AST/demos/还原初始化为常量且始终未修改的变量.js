@@ -17,7 +17,7 @@ const visitor = {
     "VariableDeclarator"(path) {
         // let _bindings = path.scope.bindings
 
-        let {id,init} = path.node;
+        let {id, init} = path.node;
         if (!path.node.init || !t.isIdentifier(path.node.id)) {
             // 如果没有值, 或者不是Identifier类型的, 不考虑
             return
@@ -25,14 +25,14 @@ const visitor = {
 
         let initPath = path.get("init")
 
-        if (initPath.isUnaryExpression({operator: "+"}) ||
-            initPath.isUnaryExpression({operator: "-"})) {// -5或者 +"3" 也可以算作是字面量
+        if (t.isUnaryExpression(initPath.node, {operator: "+"}) ||
+            t.isUnaryExpression(initPath.node, {operator: "-"})) {// -5或者 +"3" 也可以算作是字面量
             if (!t.isLiteral(init.argument)) return;
         }
-        //如果初始值非Literal节点或者Identifier节点，不做还原
+            //如果初始值非Literal节点或者Identifier节点，不做还原
         //有时候为MemberExpression节点时，也可以还原，视情况而论
-        else if (!initPath.isLiteral() &&
-            !initPath.isIdentifier()) {
+        else if (!t.isLiteral(initPath.node) &&
+            !t.isIdentifier(initPath.node)) {
             return;
         }
 
