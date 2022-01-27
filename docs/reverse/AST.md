@@ -521,6 +521,7 @@ path.scope.getBinding(name) // 获取name的绑定
 path.scope.getBinding(name).referenced // 是否会被引用
 path.scope.getBinding(name).constantViolations //  被修改信息信息记录
 path.scope.getBinding(name).referencePaths // 获取当前所有绑定路径
+path.scope.bindings // 获取当前的所有bindings
 ```
 ## 绑定
 ```javascript
