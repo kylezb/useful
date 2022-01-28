@@ -275,6 +275,22 @@ aa -> Identifier
 {a, b} -> ObjectPattern
 ```
 
+## MemberExpression
+```javascript
+let a = {}
+let b = []
+
+// 以下都为MemberExpression
+a.a
+b[1]
+
+// 关键key
+object: Expression | Super  // b
+property: Expression // [1]
+computed: boolean 
+
+computed为true的情况是a[b], 为false的情况是a.b
+```
 
 
 [返回上一级](../../README.md)

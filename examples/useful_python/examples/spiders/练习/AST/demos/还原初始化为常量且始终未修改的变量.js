@@ -3,9 +3,15 @@ const traverse = require("@babel/traverse").default;
 const t = require("@babel/types")
 const generator = require("@babel/generator").default;
 
+/*
+将未修改的变量直接替换为该变量的值
+
+思路: 遍历VariableDeclarator节点, 如果是常量, 且被引用了, 直接修改引用的地方.
+
+ */
+
 
 function replaceConstant(astCode) {
-
     const visitor = {
         "VariableDeclarator"(path) {
             // let _bindings = path.scope.bindings
