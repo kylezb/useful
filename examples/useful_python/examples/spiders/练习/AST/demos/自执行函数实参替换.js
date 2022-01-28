@@ -9,6 +9,7 @@ function functionParamsReplace(astCode) {
     const visitor = {
         "CallExpression"(path) {
             let node = path.node;
+            let calleePath = path.get("calleePath")
             if (!t.isFunctionExpression(node.callee)) return
             let arguments = node.arguments
             let calleeParamsNode = node.callee.params
