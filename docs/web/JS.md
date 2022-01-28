@@ -497,6 +497,9 @@ var b = require('b');
 ```
 ## es6的import和export
 ```js
+
+// nodejs 中要使用es6模块需要在package.json中添加 "type": "module"
+
 export var firstName = 'Michael';
 export var lastName = 'Jackson';
 export var year = 1958;
@@ -506,6 +509,7 @@ export { firstName, lastName, year };
 
 import { firstName, lastName, year } from './profile.js';
 import { lastName as surname } from './profile.js';
+
 ```
 
 # 空值运算符  leftExpr ?? rightExpr
@@ -548,6 +552,20 @@ console.log(Function.prototype.__proto__ === Object.prototype);//true
 ```javascript
 简单来说就是改变了function的this指向, 将this指向了全局
 https://blog.csdn.net/qq_39446719/article/details/103838706
+```
+
+
+# main函数
+```javascript
+// main.js / main.ts (the filename doesn't matter)
+
+function main() {
+  console.log("Hello world");
+}
+
+if (require.main === module) {
+  main();
+}
 ```
 
 [返回主目录](../../README.md)
