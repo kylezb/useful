@@ -15,28 +15,19 @@ function arrayReplactToValue(astCode) {
             let elements = initNode.elements
             let binding = path.scope.getBinding(name)
 
-            if(!binding && !binding.constant) return
+            if (!binding && !binding.constant) return
 
             for (let rPath of binding.referencePaths) {
-                let parentPath= rPath.parentPath
+                let parentPath = rPath.parentPath
                 // 判断父类是不是memberexpress, 和父类的property是不是isNumericLiteral
-                if(!t.isMemberExpression(parentPath.node) || !t.isNumericLiteral(parentPath.node.property)) continue;
+                if (!t.isMemberExpression(parentPath.node) || !t.isNumericLiteral(parentPath.node.property)) continue;
                 let index = parentPath.node.property.value
-                rPath.parentPath.replaceInline([elements[index]])
+                if (index < elements.length) {
+                    rPath.parentPath.replaceInline([ elements[index] ])
+                }
+
             }
-        },
-        // "MemberExpression"(path) {
-        //     let {object: objectNode, property: propertyNode} = path.node
-        //     if (!t.isIdentifier(objectNode) || !t.isNumericLiteral(propertyNode)) return
-        //     let leftName = objectNode.name
-        //     let rightValue = propertyNode.value
-        //     try {
-        //         let replaceNode = myMap[leftName][rightValue]
-        //         path.replaceInline([ replaceNode ])
-        //     } catch (err) {
-        //         console.log(err)
-        //     }
-        // }
+        }
     }
     traverse(astCode, visitor);
 }
@@ -46,7 +37,7 @@ if (require.main === module) {
 var a = [1,2,3,[1213,234],{"code":"666"},window];
 b = a[1] + a[2] + a[3];
 c = a[4];
-d = a[5];
+d = a[10];
         `;
     let ast = parser.parse(jscode);
     arrayReplactToValue(ast)
