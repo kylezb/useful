@@ -691,6 +691,12 @@ create database  hope CHARSET=UTF8;
 ## 18.1. 443 访问不了代理
 ```
   git config --global http.proxy "127.0.0.1:4780"
+  
+  或在配置文件中添加如下配置
+  [https]
+	proxy = https://127.0.0.1:10809
+  [http]
+	proxy = http://127.0.0.1:4780
 ```
 
 
