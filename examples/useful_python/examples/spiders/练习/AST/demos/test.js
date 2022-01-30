@@ -19,6 +19,7 @@ const replaceArrayElements =
             let {node, scope} = path;
             let {id, init} = node;
             if (!types.isArrayExpression(init)) return;
+            path.replaceWithSourceString
 
             const binding = scope.getBinding(id.name);
             if (!binding || !binding.constant) {
