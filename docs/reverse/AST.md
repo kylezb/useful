@@ -168,6 +168,7 @@ eval(member_decode_js);
 ```
 一个函数就是一个作用域
 一个变量就是一个绑定, 依附在作用域是哪个
+通过scope可以拿到该scope下的所有绑定变量及其信息
 ```
 ```js
 遍历节点的时候可以path.scope 
@@ -179,7 +180,7 @@ path.scope.getBinding(name) // 获取name的绑定
 path.scope.getBinding(name).referenced // 是否会被引用
 path.scope.getBinding(name).constantViolations //  被修改信息信息记录
 path.scope.getBinding(name).referencePaths // 获取当前所有绑定路径
-path.scope.bindings // 获取当前的所有bindings
+path.scope.bindings // 获取当前的所有bindings, 返回一个字符串, key是名字
 ```
 ## 绑定
 ```javascript
@@ -189,7 +190,7 @@ console.log('定义：', binding_.identifier)
 console.log('是否为常量, 不被修改：', binding_.constant)
 console.log('被修改信息信息记录', binding_.constantViolations.toString())
 console.log('是否会被引用：', binding_.referenced)
-console.log('被引用次数', binding_.references)
+console.log('被引用次数', binding_.references)  // 自身定义处不会计入引用次数
 console.log('被引用信息NodePath记录', binding_.referencePaths[0].parentPath.toString())
 ```
 
@@ -290,6 +291,13 @@ property: Expression // [1]
 computed: boolean 
 
 computed为true的情况是a[b], 为false的情况是a.b
+```
+
+
+## 实参节点, 形参节点
+```
+形参节点, 为函数定义出的节点, 一般是key是params
+实参节点, 为调用某个函数的节点, 一般key是arguments
 ```
 
 

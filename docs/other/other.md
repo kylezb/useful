@@ -697,6 +697,10 @@ create database  hope CHARSET=UTF8;
 	proxy = https://127.0.0.1:10809
   [http]
 	proxy = http://127.0.0.1:4780
+	
+  [http]
+	sslVerify = false
+	proxy = 127.0.0.1:4780
 ```
 
 
