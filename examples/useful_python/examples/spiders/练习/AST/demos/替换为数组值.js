@@ -23,7 +23,7 @@ function arrayReplactToValue(astCode) {
                 if (!t.isMemberExpression(parentPath.node) || !t.isNumericLiteral(parentPath.node.property)) continue;
                 let index = parentPath.node.property.value
                 if (index < elements.length) {
-                    rPath.parentPath.replaceInline([ elements[index] ])
+                    rPath.parentPath.replaceInline( elements[index] )
                 }
 
             }

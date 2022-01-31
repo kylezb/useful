@@ -85,7 +85,7 @@ function functionParamsReplace(astCode) {
                         }
                         // 满足条件, 将该节点替换
                         let replaceNode = elementsNodes[membIndex]
-                        _curParentPath.replaceInline([replaceNode])
+                        _curParentPath.replaceInline(replaceNode)
                     }
                     if (canRemovedPath) {
                         removeBoth(calleeParamsPath, argumentsPath)

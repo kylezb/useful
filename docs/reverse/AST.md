@@ -80,7 +80,10 @@ path.node // 获取当前节点
 path.parent // 返回父节点, 是一个node
 path.stop() //停止递归遍历
 path.replaceWith(types.valueToNode('123')) // 替换节点
-path.replaceInline(nodes)// 替换节点
+
+// 替换节点
+path.replaceInline(nodes)
+
 path.replaceWithSourceString(...) // 节点替换为源码字符串
 path.remove() //删除节点
 result = path.findParent(function(result) {return result.isSwitchStatement()}) // 向上查找满足回调函数的节点并返回节点
@@ -300,5 +303,27 @@ computed为true的情况是a[b], 为false的情况是a.b
 实参节点, 为调用某个函数的节点, 一般key是arguments
 ```
 
+
+## 将源码替换为字符串, eval中的源码替换出来
+```js
+const evalNode = template.statements.ast('a += 1, a += 10');
+path.replaceInline(evalNode);
+
+// 可也以重新构造个AST节点
+let newAst = parser.parse('a+=1, a+=10')
+path.replaceInline([newAst])
+```
+
+
+
+## 注意点
+```js
+/* replaceInline 的参数需要注意, 如果是替换单个节点就传入单个节点, 不用出入数组, 比如如下有区别
+    bodyPath.replaceInline(t.blockStatement([bodyPathNode]))
+    bodyPath.replaceInline([t.blockStatement([bodyPathNode])]) // 该表达式会插入2个大括号, 也就是说如果参数是数组, 在某些情况下会自动插入大括号, 所以使用的时候一定要注意
+
+*/
+path.replaceInline(nodes)
+```
 
 [返回上一级](../../README.md)
