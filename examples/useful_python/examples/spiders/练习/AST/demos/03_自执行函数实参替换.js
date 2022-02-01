@@ -39,6 +39,7 @@ function functionParamsReplace(astCode) {
 
                 // 获取当前形参的绑定信息, 注意用的是calleePath的scope
                 let bindInfo = calleePath.scope.getBinding(paramsName)
+                console.log(calleePath.scope.dump(), paramsName, 'paramsName')
 
                 if (!bindInfo?.constant) return
 
@@ -96,30 +97,10 @@ function functionParamsReplace(astCode) {
             })
 
 
-            // 查看callexpress的scope中绑定的对象
-            // let calleeBindings = calleePath.scope.bindings
-            // // console.log("ok", calleeBindings.dump())
-            // for (let calleeBindName of Object.keys(calleeBindings)) {
-            //     let calleeBind = calleeBindings[calleeBindName]
-            //     if (calleeBind.references === 0 || !calleeBind.constant) continue
-            //     console.log(calleeBind.referencePaths[0].toString())
-            //     for (let rPath of calleeBind.referencePaths) {
-            //         rPath.replaceInline([paramsToArguments[calleeBindName]])
-            //     }
-            // }
         },
 
     }
-
-    // const visitor2 = {
-    //     "MemberExpression"(path) {
-    //         const {confident, value} = path.evaluate();
-    //         console.log(path.toString());
-    //         confident && path.replaceInline(t.valueToNode(value))
-    //     }
-    // }
     traverse(astCode, visitor);
-    // traverse(astCode, visitor2);
 }
 
 if (require.main === module) {
@@ -136,6 +117,8 @@ let cc = 10;
    t = 123;
 
 })(50,[1,2],[5,3],6,-5, 10, cc, 10);
+let ff = 10
+console.log(ff)
         `;
     let ast = parser.parse(jscode);
     functionParamsReplace(ast)

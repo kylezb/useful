@@ -179,7 +179,7 @@ eval(member_decode_js);
 path.scope.path.toString() // 还原当前scope的代码
 path.scope.dump() // 打印应当前作用域
 path.scope.rename(oldName, newName, block) // 变量重命名,会修改所有的变量绑定
-path.scope.getBinding(name) // 获取name的绑定
+path.scope.getBinding(name) // 获取name的绑定, getBinding先会在当前作用域下查找绑定, 如果没有查询到, 那么会去父路径查找
 path.scope.getBinding(name).referenced // 是否会被引用
 path.scope.getBinding(name).constantViolations //  被修改信息信息记录
 path.scope.getBinding(name).referencePaths // 获取当前所有绑定路径
@@ -317,6 +317,7 @@ path.replaceInline([newAst])
 
 
 ## 注意点
+### replaceInline的使用
 ```js
 /* replaceInline 的参数需要注意, 如果是替换单个节点就传入单个节点, 不用出入数组, 比如如下有区别
     bodyPath.replaceInline(t.blockStatement([bodyPathNode]))
@@ -324,6 +325,15 @@ path.replaceInline([newAst])
 
 */
 path.replaceInline(nodes)
+```
+### path.scope.getBinding(name)
+```js
+// 先会在当前作用域下查找绑定, 如果没有查询到, 那么会去父路径查找, 比如如下代码
+function i()
+{
+}
+let c = 20
+// 如果在FunctionDeclaration的path下无法查找到c, 那么就会去父路径下查找c
 ```
 
 [返回上一级](../../README.md)

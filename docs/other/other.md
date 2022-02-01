@@ -765,10 +765,12 @@ create database  hope CHARSET=UTF8;
 总结：推荐使用常规代理服务（每日ip不限量,ip短期有效的套餐），自己维护ip代理池。
 	  转发代理服务限制并发数量，1-2个爬虫跑没有问题，但是爬虫多了每秒的并发量会很大，购买对应的套餐会很贵。
 ```
-* [自建代理squid](https://zhuanlan.zhihu.com/p/104468795)
+* [自建代理squid](https://zhuanlan.zhihu.com/p/104468795) (http://cooolin.com/scinet/2020/06/21/squid-proxy-simple.html)
 * [squid配置密码](https://www.cnblogs.com/blxt/p/14501176.html)
 ```
-http_access allow auth_users 一开始设置错误, 一定要设置成这个
+http_access allow auth_users 一开始设置错误, 一定要设置成这个, 应该是开了密码的
+
+acl localnet src 局域网ip -> 设置允许局域网的访问
 ```
 * squid日志
 ```
