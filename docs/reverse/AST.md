@@ -153,6 +153,9 @@ let ast_code = parse(js_code, {
 // 1. 用来判断节点类型
 let node = path.node;
 if (!types.isIfStatement(node)) return;
+
+// 第二个参数可以传入一些限定的匹配条件
+types.isIdentifier(_node.object, {name: name})
 ```
 
 
@@ -201,7 +204,7 @@ console.log('被引用信息NodePath记录', binding_.referencePaths[0].parentPa
 # 删除节点
 ```javascript
 1. delete path.node.extras
-2. path.remove()
+2. path.remove() // 该函数也会将对应的scope删除, 具体查看还原定义的字面量
 3. path.node.body.pop()// pop 是删除数组类型的, 删除数组的最后一项, 比如花括号中有3行语句, 删除的是第三行的
 ```
 
@@ -333,7 +336,21 @@ function i()
 {
 }
 let c = 20
-// 如果在FunctionDeclaration的path下无法查找到c, 那么就会去父路径下查找c
+// 如果在FunctionDeclaration的path下无法查找到c, 那么就会去父路径下查找c, 可以查看:删除未被使用的函数.js
+```
+
+### path.remove()
+```
+会将该path下的绑定变量从scope中删除, 如果scope中有其他重名的绑定, 那么使用该函数会有一定问题.
+比如:
+# FunctionDeclaration
+ - s { constant: true, references: 1, violations: 0, kind: 'var' }
+# Program
+ - a { constant: true, references: 0, violations: 0, kind: 'hoisted' }
+ - s { constant: true, references: 2, violations: 0, kind: 'let' }
+
+
+当删除FunctionDeclaration中的s的path的时候, program中的s也会被删除, 具体查看:还原定义的字面量.js
 ```
 
 [返回上一级](../../README.md)
