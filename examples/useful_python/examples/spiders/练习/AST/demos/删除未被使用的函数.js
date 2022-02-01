@@ -13,24 +13,24 @@ path.scope.getBinding(name) 先是会在当前path下查找绑定的name, 如果
 function constantFolding(astCode) {
     const visitor = {
 
-        // "VariableDeclarator|FunctionDeclaration"
-        "FunctionDeclaration"(path) {
+        "VariableDeclarator|FunctionDeclaration"(path) {
+
 
             const {id} = path.node;
 
-
             const binding = path.parentPath.scope.getBinding(id.name);
+            // VariableDeclarator的parentPath 为VariableDeclaration, 一样可以获取到正确的binding
 
+            // console.log(path.toString())
+            // console.log("****")
+            // console.log(path.parentPath.toString())
+            // console.log("****")
             if (!binding || binding.constantViolations.length > 0) {//如果变量被修改过，则不能进行删除动作。
-
                 return;
-
             }
 
             if (binding.referencePaths.length === 0) {//长度为0，说明变量没有被使用过。
-
                 path.remove();
-
             }
 
         },
