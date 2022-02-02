@@ -5,6 +5,56 @@ const generator = require("@babel/generator").default;
 
 
 function objectReplaceToValue(astCode) {
+
+    const vis = {
+        VariableDeclarator(path) {
+
+            const {id, init} = path.node;
+
+            if (!t.isObjectExpression(init)) return;
+
+            let name = id.name;
+
+            let properties = init.properties;
+
+
+            let all_next_siblings = path.parentPath.getAllNextSiblings();
+
+
+            for (let next_sibling of all_next_siblings) {
+
+
+                if (!next_sibling.isExpressionStatement()) break;
+
+
+                let expression = next_sibling.get('expression');
+
+
+                if (!expression.isAssignmentExpression()) break;
+
+
+                let {operator, left, right} = expression.node;
+
+
+                if (operator != '=' || !t.isMemberExpression(left) || !t.isIdentifier(left.object, {name: name})) {
+
+
+                    break;
+
+                }
+
+
+                properties.push(t.ObjectProperty(left.property, right));
+
+
+                next_sibling.remove();
+
+
+            }
+
+        },
+    }
+    traverse(astCode, vis);
     const visitor = {
         VariableDeclarator(path) {
 
@@ -114,6 +164,8 @@ function objectReplaceToValue(astCode) {
 
 if (require.main === module) {
     const jscode = `
+    
+ // ob混淆key的长度一般是固定的
 var a = {
     "YJJox": "object",
     "sbTga": function (b, c) {
@@ -127,6 +179,17 @@ var a = {
     },
 };
 b = a["iwvEK"](1, 3),c = a["sbTga"](111,222),d = a["YJJox"],e = a["HqkiD"](String.fromCharCode,49)
+
+
+// 对象key value定义在外边的
+var h = {};
+h["bbbba"] = "hello wolrd";
+h["bbbbb"] = function (a,b)
+{
+   return a | b;
+}
+
+cc = h['bbbbb'](1, 2)
         `;
     let ast = parser.parse(jscode);
     objectReplaceToValue(ast)
