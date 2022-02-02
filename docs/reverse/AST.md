@@ -9,7 +9,7 @@
 # [ob混淆](https://obfuscator.io/)
 # [在线AST](https://astexplorer.net/)
 # [节点详解](https://github.com/babel/babylon/blob/master/ast/spec.md)
-# [@babel/types文档](https://babeljs.io/docs/en/babel-types)
+# [@babel/types文档, 和其他一些babel文档](https://babeljs.io/docs/en/babel-types)
 # 混淆环境
 
 * npm install esprima estraverse escodegen -S
@@ -158,6 +158,18 @@ if (!types.isIfStatement(node)) return;
 types.isIdentifier(_node.object, {name: name})
 ```
 
+# generator
+## 常用参数
+```js
+// Unicode转中文或者其他非ASCII码字符。
+const output = generator(ast,opts = {jsescOption:{"minimal":true}},code);
+// 代码压缩
+const output = generator(ast,opts = {"compact":true},code);
+// 删除所有注释
+const output = generator(ast,opts = {"comments":false},code);
+// 删除空行
+const output = generator(ast,opts = {"retainLines":true},code);
+```
 
 # ob, 将解混淆函数加入到内存中
 ```js
@@ -351,6 +363,21 @@ let c = 20
 
 
 当删除FunctionDeclaration中的s的path的时候, program中的s也会被删除, 具体查看:还原定义的字面量.js
+```
+
+### 对同一个节点进行多个方法操作
+```
+traverse(ast, {
+
+    CallExpression:
+
+    {
+
+        enter: [reduce_call_express,delete_empty_params]
+
+    },
+
+});
 ```
 
 [返回上一级](../../README.md)
