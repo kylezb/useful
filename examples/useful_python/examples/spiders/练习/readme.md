@@ -1,3 +1,8 @@
+
+# 练习文件夹下有package.json
+
+
+
 # 第1题
 
 ```text
@@ -33,6 +38,15 @@
 
 解决方法: 模拟参数+aes ecb加密
 ```
+
+# 第6题
+```text
+
+jsfuck jjencode aaencode
+```
+
+
+
 # 第10题
 ```text
 概要: url中有个m的加密参数, 参考(https://github.com/skygongque/match-yuanrenxue/tree/master/match10)

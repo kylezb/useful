@@ -1,0 +1,15 @@
+{
+  "name": "practice",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "```text\r 简单js扣代码, 将扣出来的代码通过node 运行, 然后获取返回值\r 纯python代码\r ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsencrypt": "^3.2.1"
+  }
+}
