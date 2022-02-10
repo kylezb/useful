@@ -42,6 +42,9 @@
 # 第6题
 ```text
 
+
+多运行一次加密函数就会失败, 是为什么?
+
 jsfuck jjencode aaencode
 ```
 

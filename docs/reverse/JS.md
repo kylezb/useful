@@ -260,3 +260,15 @@ var e = [函数1, 函数2]
 ```
 一般是将加载器抠出来, 然后加载的模块缺啥补啥
 ```
+
+
+
+# 错误记录
+## execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character
+```javascript
+// 将文件的打开编码重新定义下
+import subprocess
+from functools import partial
+subprocess.Popen = partial(subprocess.Popen, encoding="utf-8")
+import execjs
+```
