@@ -68,7 +68,7 @@ a()
 
 
 # async包的用法
-## series 串行
+## series 
 ```
     var async = require('async');
 

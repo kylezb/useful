@@ -482,14 +482,30 @@ window.o = 1;
                                 i = s,
                                     s = o
                             }
-                        return e.revert(i)
+
+                        let temp = e.revert(i)
+                        return temp
                     }
                     ;
 
                     function z(t, e) {
                         var i;
-                        return i = 256 > t || e.isEven() ? new $(e) : new O(e),
-                            this.exp(t, i)
+                        i = new O(e)
+                        // console.log(t)
+                        let j = this.exp(t, i)
+                        // console.log(j)
+                        return j
+                        // let j = (i = new O(e), this.exp(t, i))
+                        // let k = i
+                        // console.log(j, 'j')
+                        // console.log(i, 'i')
+                        // return j
+                        // return i = (e.isEven()) ? new $(e) : new O(e), this.exp(t, i);
+                        // return i = e.isEven() ? new $(e) : new O(e), this.exp(t, i)
+
+
+                        // return i = 256 > t || e.isEven() ? new $(e) : new O(e),
+                        //     this.exp(t, i)
                     }
 
                     function q() {
@@ -1186,8 +1202,8 @@ window.o = 1;
                         var i = this.doPublic(e);
                         if (null == i)
                             return null;
-                        var s = i.toString(16);
-                        return 0 == (1 & s.length) ? s : "0" + s
+                        // var s = i.toString(16);
+                        // return 0 == (1 & s.length) ? s : "0" + s
                     }
 
                     function he(t, e) {
@@ -1269,6 +1285,7 @@ window.o = 1;
                     }
 
                     function be(t) {
+                        return 'ok'
                         var e, i, s = "";
                         for (e = 0; e + 3 <= t.length; e += 3)
                             i = parseInt(t.substring(e, e + 3), 16),
@@ -1300,7 +1317,8 @@ window.o = 1;
 
                     try {
                         var we, ke,
-                            xe = false;                        xe && "Microsoft Internet Explorer" == navigator.appName ? (b.prototype.am = i,
+                            xe = false;
+                        xe && "Microsoft Internet Explorer" == navigator.appName ? (b.prototype.am = i,
                             we = 26) : xe && "Netscape" != navigator.appName ? (b.prototype.am = e,
                             we = 26) : (b.prototype.am = s,
                             we = 28),
@@ -2891,7 +2909,13 @@ window.o = 1;
                         ,
                         He.prototype.encrypt = function (t) {
                             try {
-                                return be(this.getKey().encrypt(t))
+                                // return be(this.getKey().encrypt(t))
+
+                                console.log(this.getKey())
+                                console.log(this.getKey())
+                                this.getKey().encrypt(t)
+                                // be()
+                                // console.log(this.getKey())
                             } catch (b) {
                                 return !1
                             }
@@ -2967,5 +2991,7 @@ function r(param1, param2) {
 }
 
 
-// console.log(z(1644462086000, 2))
+console.log(z(1644462086000, 2))
+console.log(z(1644462086000, 2))
 
+// console.log(z(1644462086000, 2))

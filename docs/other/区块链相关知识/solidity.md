@@ -1,3 +1,31 @@
+
+- [1. Solidity 合约编写](#1-solidity-合约编写)
+  - [1.1. 一些全局变量](#11-一些全局变量)
+  - [1.2. 地址类对象的方法和属性](#12-地址类对象的方法和属性)
+  - [1.3. 合约函数定义相关](#13-合约函数定义相关)
+  - [1.4. 交易 Transactions](#14-交易-transactions)
+  - [1.5. 调用 Calls](#15-调用-calls)
+  - [1.6. 调用其他合约](#16-调用其他合约)
+  - [1.7. 创建合约实列](#17-创建合约实列)
+  - [1.8. 估算某个方法的gas开销](#18-估算某个方法的gas开销)
+  - [1.9. 类型转换](#19-类型转换)
+  - [1.10. 汇编相关代码](#110-汇编相关代码)
+  - [1.11. 数字安全性](#111-数字安全性)
+  - [1.12. 自定义错误](#112-自定义错误)
+  - [1.13. 1wei = 数字 1 = unit256 1](#113-1wei--数字-1--unit256-1)
+  - [1.14. view函数](#114-view函数)
+  - [1.15. prue函数](#115-prue函数)
+  - [1.16. 继承相关](#116-继承相关)
+  - [1.17. 数组](#117-数组)
+  - [1.18. 合约向其他地方转账的3种方式](#118-合约向其他地方转账的3种方式)
+  - [1.19. 合约接收eth](#119-合约接收eth)
+  - [1.20. 合约查看剩余gas gasleft()](#120-合约查看剩余gas-gasleft)
+  - [1.21. call函数的使用](#121-call函数的使用)
+  - [1.22. delegatecall](#122-delegatecall)
+  - [1.23. 调用另外一个函数](#123-调用另外一个函数)
+  - [1.24. 在合约中创建另外一个合约](#124-在合约中创建另外一个合约)
+  - [1.25. library](#125-library)
+
 # 1. Solidity 合约编写
 ## 1.1. 一些全局变量
 ```
@@ -243,20 +271,20 @@ receive() is called if msg.data is empty, otherwise fallback() is called.
 
 ## 1.20. 合约查看剩余gas gasleft()
 
-## call函数的使用
+## 1.21. call函数的使用
 ```
 1. 调用另外一个合约的函数
     (bool success, bytes memory data) = _addr.call{value: msg.value, gas: 5000}(
                 abi.encodeWithSignature("foo(string,uint256)", "call foo", 123)
             );
 ```
-##  delegatecall
+##  1.22. delegatecall
 ```
 1.该调用的上下文为调用方的上下文, 比如a合约通过delegatecall调用b合约的一个函数, 如果x变量在a和b中都有, 那么调用的b合约中的函数修改x的值, 修改的是a合约中的值.
 2.b合约中如果有修改a合约中的变量, 那么b合约的变量声明顺序要和a合约一样
 ```
 
-## 调用另外一个函数
+## 1.23. 调用另外一个函数
 ```
 1. 可以直接通过合约名来初始化另外一个函数并调用, 以下函数第一个参数直接传入合约地址就可以.Callee是一个合约
      function setX(Callee _callee, uint _x) public {
@@ -280,7 +308,7 @@ receive() is called if msg.data is empty, otherwise fallback() is called.
 ```
 
 
-## 在合约中创建另外一个合约
+## 1.24. 在合约中创建另外一个合约
 ```
 1. 通过new
     Car car = new Car(_owner, _model);
@@ -288,7 +316,7 @@ receive() is called if msg.data is empty, otherwise fallback() is called.
     Car car = (new Car){value: msg.value}(_owner, _model);
 ```
 
-## library
+## 1.25. library
 ```
 1. 直接使用名字来试用library
 2. 向某个已知类注入额外功能, using A for B;

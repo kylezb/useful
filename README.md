@@ -3,8 +3,7 @@
 
 
 # 说明  
-一些知识点备忘录
-
+工作中学习中遇到的知识点整理
 
 * [python笔记](./docs/python/python.md)
 
@@ -14,21 +13,26 @@
 
 * [js笔记](./docs/web/JS.md)
 
-* [hive sql 笔记](./docs/other/hive.md)
+* [js逆向笔记](./docs/reverse/JS.md)
 
-* [django 笔记](./docs/python/django.md)
-
-* [scrapy 笔记](./docs/python/scrapy.md)
-
-* [自动化笔记](./docs/python/auto.md)
+* [AST笔记](./docs/reverse/AST.md)
 
 * [APP逆向笔记](./docs/reverse/reverse.md)
 
-* [js混淆笔记](./docs/reverse/AST.md)
+* [区块链笔记](./docs/other/区块链相关知识)
 
-* [js逆向笔记](./docs/reverse/JS.md)
+
+
+* [hive sql 笔记](./docs/other/hive.md)
 
 * [杂项笔记](./docs/other/other.md)
+
+* [scrapy 笔记](./docs/python/scrapy.md)
+
+* [django 笔记](./docs/python/django.md)
+
+* [自动化笔记](./docs/python/auto.md)
+
 
 
 练习9题 14 16

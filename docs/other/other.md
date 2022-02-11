@@ -40,10 +40,11 @@
 - [8. nginx 常用配置](#8-nginx-常用配置)
   - [8.1. 多个域名，通一个ip。在域名服务商处查看域名前缀，一般@表明主机名为空](#81-多个域名通一个ip在域名服务商处查看域名前缀一般表明主机名为空)
   - [8.2. @ nginx内部跳转](#82--nginx内部跳转)
-  - [8.3. try_files](#83-try_files)
-  - [8.4. location](#84-location)
-  - [8.5. rewrite](#85-rewrite)
-  - [8.6. redict 和 rewrite](#86-redict-和-rewrite)
+  - [8.3. 在线配置网站](#83-在线配置网站)
+  - [8.4. try_files](#84-try_files)
+  - [8.5. location](#85-location)
+  - [8.6. rewrite](#86-rewrite)
+  - [8.7. redict 和 rewrite](#87-redict-和-rewrite)
 - [9. 常用linux命令](#9-常用linux命令)
   - [9.1. 查看系统磁盘使用：df -h](#91-查看系统磁盘使用df--h)
   - [9.2. 查看文件目录大小：](#92-查看文件目录大小)
@@ -110,6 +111,7 @@
 - [31. centos 设置systemctl启动任务 开机重启 开机启动](#31-centos-设置systemctl启动任务-开机重启-开机启动)
 - [32. wsl windows  win10 上linux安装和使用连接](#32-wsl-windows--win10-上linux安装和使用连接)
 - [33. strapi破解](#33-strapi破解)
+- [34. node 安装](#34-node-安装)
 
 
 
@@ -444,13 +446,13 @@
   }
   #以 /index/ 开头的请求，如果链接的状态为 404。则会匹配到 @index_error 这条规则上。 
 ```
-## 在线配置网站
+## 8.3. 在线配置网站
 ```text
 https://nginxconfig.io/
 https://www.digitalocean.com/community/tools/nginx?domains.0.php.php=false&domains.0.reverseProxy.reverseProxy=true&domains.0.routing.root=false&global.app.lang=ru
 ```
 
-## 8.3. try_files
+## 8.4. try_files
 ```
   https://www.cnblogs.com/boundless-sky/p/9459775.html
   例子 1
@@ -480,7 +482,7 @@ https://www.digitalocean.com/community/tools/nginx?domains.0.php.php=false&domai
   当然try_files也可以以错误代码赋值，如try_files /index.php = 404 @apache，则表示当尝试访问得文件返回404时，根据@apache配置项进行重定向。
 ```
 
-## 8.4. location
+## 8.5. location
 ```
   https://www.cnblogs.com/WiseAdministrator/articles/11121653.html
   已=开头表示精确匹配
@@ -492,7 +494,7 @@ https://www.digitalocean.com/community/tools/nginx?domains.0.php.php=false&domai
   顺序 no优先级：
   (location =) > (location 完整路径) > (location ^~ 路径) > (location ~,~* 正则顺序) > (location 部分起始路径) > (/)
 ```
-## 8.5. rewrite
+## 8.6. rewrite
 ```
   https://www.cnblogs.com/brianzhu/p/8624703.html
   
@@ -515,7 +517,7 @@ https://www.digitalocean.com/community/tools/nginx?domains.0.php.php=false&domai
   }
 ```
 
-## 8.6. redict 和 rewrite
+## 8.7. redict 和 rewrite
 ```
   redict 重定向，浏览器会重新发起跳转
   rewrite 服务器内部自己处理请求，浏览器不会再次跳转, 会返回一个304
@@ -959,7 +961,7 @@ WantedBy=multi-user.target
 yarn build --clean
 
 
-# node 安装
+# 34. node 安装
 ```text
 1. 直接下载node
 ln -s /root/files/node_v12.22.9/bin/npm /usr/bin/npm
