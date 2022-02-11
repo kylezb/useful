@@ -1,28 +1,64 @@
 [返回上一级](../../README.md)
 
+
+- [1. ob混淆](#1-ob混淆)
+- [2. 在线AST](#2-在线ast)
+- [3. 节点详解](#3-节点详解)
+- [4. @babel/types文档, 和其他一些babel文档](#4-babeltypes文档-和其他一些babel文档)
+- [5. 混淆环境](#5-混淆环境)
+- [6. AST还原需要安装的包](#6-ast还原需要安装的包)
+- [7. 逆向大纲](#7-逆向大纲)
+- [8. AST笔记](#8-ast笔记)
+- [9. visitor 使用](#9-visitor-使用)
+- [10. traverse](#10-traverse)
+  - [10.1. 遍历的时候的path对象](#101-遍历的时候的path对象)
+- [11. path.node](#11-pathnode)
+- [12. parse](#12-parse)
+- [13. types 库: 用于生成节点](#13-types-库-用于生成节点)
+- [14. generator](#14-generator)
+  - [14.1. 常用参数](#141-常用参数)
+- [15. ob, 将解混淆函数加入到内存中](#15-ob-将解混淆函数加入到内存中)
+- [16. scope](#16-scope)
+  - [16.1. 简单理解](#161-简单理解)
+  - [16.2. 绑定](#162-绑定)
+- [17. 删除节点](#17-删除节点)
+- [18. 一些常见情况](#18-一些常见情况)
+  - [18.1. BlockStatement](#181-blockstatement)
+  - [18.2. IfStatement](#182-ifstatement)
+  - [18.3. ArrayPattern ObjectPattern](#183-arraypattern-objectpattern)
+  - [18.4. VariableDeclarator](#184-variabledeclarator)
+  - [18.5. MemberExpression](#185-memberexpression)
+  - [18.6. 实参节点, 形参节点](#186-实参节点-形参节点)
+  - [18.7. 将源码替换为字符串, eval中的源码替换出来](#187-将源码替换为字符串-eval中的源码替换出来)
+  - [18.8. 注意点](#188-注意点)
+    - [18.8.1. replaceInline的使用](#1881-replaceinline的使用)
+    - [18.8.2. path.scope.getBinding(name)](#1882-pathscopegetbindingname)
+    - [18.8.3. path.remove()](#1883-pathremove)
+    - [18.8.4. 对同一个节点进行多个方法操作](#1884-对同一个节点进行多个方法操作)
+
 目录：JS逆向/JS混淆测试
 
 * 参考链接
     * https://www.jianshu.com/p/47d9b2a365c5
 
     
-# [ob混淆](https://obfuscator.io/)
-# [在线AST](https://astexplorer.net/)
-# [节点详解](https://github.com/babel/babylon/blob/master/ast/spec.md)
-# [@babel/types文档, 和其他一些babel文档](https://babeljs.io/docs/en/babel-types)
-# 混淆环境
+# 1. [ob混淆](https://obfuscator.io/)
+# 2. [在线AST](https://astexplorer.net/)
+# 3. [节点详解](https://github.com/babel/babylon/blob/master/ast/spec.md)
+# 4. [@babel/types文档, 和其他一些babel文档](https://babeljs.io/docs/en/babel-types)
+# 5. 混淆环境
 
 * npm install esprima estraverse escodegen -S
 
-# AST还原需要安装的包
+# 6. AST还原需要安装的包
 * npm install @babel/parser @babel/traverse @babel/generator @babel/types
 * 
-# 逆向大纲
+# 7. 逆向大纲
 
 * hello world，console.log 混淆解密
 * 利用AST去除debugger无限循环
 
-# AST笔记
+# 8. AST笔记
 
 
 
@@ -42,7 +78,7 @@
   
     ```
 
-# visitor 使用
+# 9. visitor 使用
 
 ```js
 const visitor = {
@@ -68,13 +104,13 @@ const visitor = {
 }
 ```
 
-# traverse
+# 10. traverse
 
 ```js
 // 是深度遍历的方式的
 ```
 
-## 遍历的时候的path对象
+## 10.1. 遍历的时候的path对象
 ```js
 path.node // 获取当前节点
 path.parent // 返回父节点, 是一个node
@@ -129,7 +165,7 @@ const {confident, value} = path.evaluate(); // confident为true时, value就是�
 
 ```
 
-# path.node
+# 11. path.node
 ```javascript
 // 如何获取当前节点所对应的源代码
 const generator = require("@babel/generator").default;
@@ -139,7 +175,7 @@ let {code} = generator(node);
 delete path.node.init; // path的删除是path.remove()
 ```
 
-# parse
+# 12. parse
 
 ```js
  // Parse 函数有个sourceType参数, 需要设置为module, 如果不设置, 那么出现import的话会报错
@@ -148,7 +184,7 @@ let ast_code = parse(js_code, {
 });
 ```
 
-# types 库: 用于生成节点
+# 13. types 库: 用于生成节点
 ```js
 // 1. 用来判断节点类型
 let node = path.node;
@@ -158,8 +194,8 @@ if (!types.isIfStatement(node)) return;
 types.isIdentifier(_node.object, {name: name})
 ```
 
-# generator
-## 常用参数
+# 14. generator
+## 14.1. 常用参数
 ```js
 // Unicode转中文或者其他非ASCII码字符。
 const output = generator(ast,opts = {jsescOption:{"minimal":true}},code);
@@ -171,7 +207,7 @@ const output = generator(ast,opts = {"comments":false},code);
 const output = generator(ast,opts = {"retainLines":true},code);
 ```
 
-# ob, 将解混淆函数加入到内存中
+# 15. ob, 将解混淆函数加入到内存中
 ```js
 // 将代码片段弄到变量中, 然后运行
 for(let i=0;i<=2;i++){
@@ -181,8 +217,8 @@ for(let i=0;i<=2;i++){
 eval(member_decode_js);
 ```
 
-# scope
-## 简单理解
+# 16. scope
+## 16.1. 简单理解
 ```
 一个函数就是一个作用域
 一个变量就是一个绑定, 依附在作用域是哪个
@@ -200,7 +236,7 @@ path.scope.getBinding(name).constantViolations //  被修改信息信息记录
 path.scope.getBinding(name).referencePaths // 获取当前所有绑定路径
 path.scope.bindings // 获取当前的所有bindings, 返回一个字符串, key是名字
 ```
-## 绑定
+## 16.2. 绑定
 ```javascript
 path.scope.bindings
 console.log('类型：', binding_.kind)
@@ -213,7 +249,7 @@ console.log('被引用信息NodePath记录', binding_.referencePaths[0].parentPa
 ```
 
 
-# 删除节点
+# 17. 删除节点
 ```javascript
 1. delete path.node.extras
 2. path.remove() // 该函数也会将对应的scope删除, 具体查看还原定义的字面量
@@ -221,8 +257,8 @@ console.log('被引用信息NodePath记录', binding_.referencePaths[0].parentPa
 ```
 
 
-# 一些常见情况
-## BlockStatement
+# 18. 一些常见情况
+## 18.1. BlockStatement
 ```javascript
 // BlockStatement 中的body是一个数组
 // 对应代码
@@ -241,7 +277,7 @@ let ast = {
     }
 }
 ```
-## IfStatement
+## 18.2. IfStatement
 ```javascript
 // 对应代码
 if(a>10){
@@ -265,7 +301,7 @@ let ast = {
     }
 }
 ```
-## ArrayPattern ObjectPattern
+## 18.3. ArrayPattern ObjectPattern
 ```javascript
 var [first, second, third] = someArray;
 const {a, b} = {a:10, b:20}
@@ -274,7 +310,7 @@ const {a, b} = {a:10, b:20}
 {a, b} // 是一个ObjectPattern, 在在VariableDeclarator中
 ```
 
-## VariableDeclarator
+## 18.4. VariableDeclarator
 ```
 interface VariableDeclarator <: Node {
   type: "VariableDeclarator";
@@ -294,7 +330,7 @@ aa -> Identifier
 {a, b} -> ObjectPattern
 ```
 
-## MemberExpression
+## 18.5. MemberExpression
 ```javascript
 let a = {}
 let b = []
@@ -312,14 +348,14 @@ computed为true的情况是a[b], 为false的情况是a.b
 ```
 
 
-## 实参节点, 形参节点
+## 18.6. 实参节点, 形参节点
 ```
 形参节点, 为函数定义出的节点, 一般是key是params
 实参节点, 为调用某个函数的节点, 一般key是arguments
 ```
 
 
-## 将源码替换为字符串, eval中的源码替换出来
+## 18.7. 将源码替换为字符串, eval中的源码替换出来
 ```js
 const evalNode = template.statements.ast('a += 1, a += 10');
 path.replaceInline(evalNode);
@@ -331,8 +367,8 @@ path.replaceInline([newAst])
 
 
 
-## 注意点
-### replaceInline的使用
+## 18.8. 注意点
+### 18.8.1. replaceInline的使用
 ```js
 /* replaceInline 的参数需要注意, 如果是替换单个节点就传入单个节点, 不用出入数组, 比如如下有区别
     bodyPath.replaceInline(t.blockStatement([bodyPathNode]))
@@ -341,7 +377,7 @@ path.replaceInline([newAst])
 */
 path.replaceInline(nodes)
 ```
-### path.scope.getBinding(name)
+### 18.8.2. path.scope.getBinding(name)
 ```js
 // 先会在当前作用域下查找绑定, 如果没有查询到, 那么会去父路径查找, 比如如下代码
 function i()
@@ -351,7 +387,7 @@ let c = 20
 // 如果在FunctionDeclaration的path下无法查找到c, 那么就会去父路径下查找c, 可以查看:删除未被使用的函数.js
 ```
 
-### path.remove()
+### 18.8.3. path.remove()
 ```
 会将该path下的绑定变量从scope中删除, 如果scope中有其他重名的绑定, 那么使用该函数会有一定问题.
 比如:
@@ -365,7 +401,7 @@ let c = 20
 当删除FunctionDeclaration中的s的path的时候, program中的s也会被删除, 具体查看:还原定义的字面量.js
 ```
 
-### 对同一个节点进行多个方法操作
+### 18.8.4. 对同一个节点进行多个方法操作
 ```
 traverse(ast, {
 

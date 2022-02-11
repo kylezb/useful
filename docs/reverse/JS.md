@@ -10,7 +10,7 @@
   - [3.1. 直接添加条件跳过(右键 never pause here)](#31-直接添加条件跳过右键-never-pause-here)
   - [3.2. 直接在控制台中将函数设置为空函数](#32-直接在控制台中将函数设置为空函数)
   - [3.3. 一些常用过debugger脚本](#33-一些常用过debugger脚本)
-  - [在控制台的定义的函数也可debugger](#在控制台的定义的函数也可debugger)
+  - [3.4. 在控制台的定义的函数也可debugger](#34-在控制台的定义的函数也可debugger)
 - [4. nodejs](#4-nodejs)
   - [4.1. nodejs 和 浏览器环境区别](#41-nodejs-和-浏览器环境区别)
   - [4.2. python 中调用nodejs文件](#42-python-中调用nodejs文件)
@@ -20,16 +20,18 @@
 - [6. 过程记录](#6-过程记录)
   - [6.1. F12，右键反调试](#61-f12右键反调试)
 - [7. chrome 中技巧](#7-chrome-中技巧)
-  - [可以在dom元素上打断点](#可以在dom元素上打断点)
-  - [在控制台打印的东西可以直接定位到](#在控制台打印的东西可以直接定位到)
+  - [7.1. 可以在dom元素上打断点](#71-可以在dom元素上打断点)
+  - [7.2. 在控制台打印的东西可以直接定位到](#72-在控制台打印的东西可以直接定位到)
 - [8. 模拟登陆相关知识](#8-模拟登陆相关知识)
   - [8.1. 模拟登陆检测网站](#81-模拟登陆检测网站)
-- [自执行函数(定义完成后就马上调)](#自执行函数定义完成后就马上调)
-- [call 和 apply](#call-和-apply)
-- [扣代码心得](#扣代码心得)
-- [webpack](#webpack)
-  - [特征标识](#特征标识)
-  - [如何扣代码](#如何扣代码)
+- [9. 自执行函数(定义完成后就马上调)](#9-自执行函数定义完成后就马上调)
+- [10. call 和 apply](#10-call-和-apply)
+- [11. 扣代码心得](#11-扣代码心得)
+- [12. webpack](#12-webpack)
+  - [12.1. 特征标识](#121-特征标识)
+  - [12.2. 如何扣代码](#122-如何扣代码)
+- [13. 错误记录](#13-错误记录)
+  - [13.1. execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character](#131-execjs报错-unicodeencodeerror-gbk-codec-cant-encode-character)
 
 # 1. 搜索关键字
 
@@ -113,7 +115,7 @@ setInterval=function(){}
 
 
 ```
-## 在控制台的定义的函数也可debugger
+## 3.4. 在控制台的定义的函数也可debugger
 ```js
 a = function(){
     debugger
@@ -170,8 +172,8 @@ a = function(){
 
 # 7. chrome 中技巧
 
-## 可以在dom元素上打断点
-## 在控制台打印的东西可以直接定位到
+## 7.1. 可以在dom元素上打断点
+## 7.2. 在控制台打印的东西可以直接定位到
 
 * 7.1. 在控制台输入copy(变量)，可以直接复制变量。
 * Network中Initiator可以查看发请求的流程，可通过该流程定位打断点。
@@ -192,7 +194,7 @@ function atob(str) {
 
 ## 8.1. [模拟登陆检测网站](https://bot.sannysoft.com/)
 
-# 自执行函数(定义完成后就马上调)
+# 9. 自执行函数(定义完成后就马上调)
 
 ```
   !function () { /* ... */ }();
@@ -205,14 +207,14 @@ function atob(str) {
 ```
 
 
-# call 和 apply
+# 10. call 和 apply
 ```text
 第一个参数是this, 修改接下来运行环境的this
 apply的第二个参数是数组, call是常规的用逗号分割开来的.
 ```
 
 
-# 扣代码心得
+# 11. 扣代码心得
 ```javascript
 1. 遇到如果函数没有传参数的直接使用返回值看看. (可以将值替换到源码中看运行结果)
 2. 
@@ -233,9 +235,9 @@ window.btoa = window.btoa ? window.btoa : function btoa(str) {
 
 
 
-# webpack
+# 12. webpack
 
-## 特征标识
+## 12.1. 特征标识
 ```js
 // webpack的加载器, 一般在自执行函数中, 加载器的后边一般是加载模块
 function n(r) {
@@ -256,15 +258,15 @@ var e = {
 // 或者加载模块是个数组
 var e = [函数1, 函数2]
 ```
-## 如何扣代码
+## 12.2. 如何扣代码
 ```
 一般是将加载器抠出来, 然后加载的模块缺啥补啥
 ```
 
 
 
-# 错误记录
-## execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character
+# 13. 错误记录
+## 13.1. execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character
 ```javascript
 // 将文件的打开编码重新定义下
 import subprocess

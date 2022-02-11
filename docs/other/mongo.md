@@ -1,20 +1,34 @@
 [返回上一级](../../README.md)
 
-# mongo常用命令：
-* 启动mongo服务：
+
+- [1. mongo常用命令：](#1-mongo常用命令)
+- [2. 启动mongo服务：](#2-启动mongo服务)
+- [3. 创建索引：db.company_contact.createIndex({"companyName": 1, "source": 1}, {"background": true, "unique":true})](#3-创建索引dbcompany_contactcreateindexcompanyname-1-source-1-background-true-uniquetrue)
+- [4. 查看当前索引：db.sentiment.getIndexes()](#4-查看当前索引dbsentimentgetindexes)
+- [5. 其他：](#5-其他)
+- [6. 常用查询](#6-常用查询)
+  - [6.1. 模糊查询](#61-模糊查询)
+  - [6.2. 列表类型的一些操作](#62-列表类型的一些操作)
+  - [6.3. remove操作](#63-remove操作)
+  - [6.4. 数据中对象查询](#64-数据中对象查询)
+  - [6.5. 聚合查询](#65-聚合查询)
+- [7. 导入导出](#7-导入导出)
+- 
+# 1. mongo常用命令：
+# 2. 启动mongo服务：
     * 启动docker：docker run -itd --name mongo -p 27017:27017 mongo --auth
     * 进入shell，选择admin用户：docker exec -it mongo mongo admin
     * 创建用户(在哪个库下创建的用户，登录的时候需要指定这个数据库)：db.createUser({ user:'admin',pwd:'123456',roles:[ { role:'userAdminAnyDatabase', db: 'admin'}]});
     * 授权链接： db.auth('admin', '123456')
     * 创建一般用户：db.createUser({user: "pgy",pwd: "******",roles: [{role: "readWrite",db: "hope"}]})
     * 更新权限：db.grantRolesToUser("pgy", [{role:"root", db:"admin"}])
-* 创建索引：db.company_contact.createIndex({"companyName": 1, "source": 1}, {"background": true, "unique":true})
-* 查看当前索引：db.sentiment.getIndexes()
-* 其他：
+# 3. 创建索引：db.company_contact.createIndex({"companyName": 1, "source": 1}, {"background": true, "unique":true})
+# 4. 查看当前索引：db.sentiment.getIndexes()
+# 5. 其他：
     * show dbs
     * show users
-* 常用查询
-    * 模糊查询
+# 6. 常用查询
+## 6.1. 模糊查询
         ```
             1.查询包含XXX:{name:/xxx/}
             2.查询以XXX开头:{name:/^xxx/}
@@ -26,7 +40,7 @@
                 contact_info:{ $regex:/.../}
             }).count()
         ```
-    * 列表类型的一些操作
+## 6.2. 列表类型的一些操作
         ```
         sources是个列表类型，其中存的是字典,查询字段是否存在
         {
@@ -57,7 +71,7 @@
         )
         ```
   
-  * remove操作
+## 6.3. remove操作
     ```
         db.contacts.remove({
             type:3,
@@ -65,7 +79,7 @@
         })
     ```
     
-   * 数据中对象查询
+## 6.4. 数据中对象查询
         ```
             //插入测试数据
             db.test_pgy.insert(
@@ -111,7 +125,7 @@
      
         ```
      
-    * 聚合查询
+## 6.5. 聚合查询
         ```
             $project: 过滤字段
             $match：匹配条件
@@ -124,7 +138,7 @@
 
 
 
-* 导入导出
+# 7. 导入导出
     工具包: https://www.runoob.com/mongodb/mongodb-linux-install.html
     export PATH=/usr/local/mongodb/bin:$PATH`
 ```
@@ -144,6 +158,8 @@
     mongoexport -d fiscans -c herotrades --type=json --query='{"updatedAt":{"$gt":{ "$date": "2021-12-18T00:00:00.001Z" }}}' -o herotrades.json 
 
 ```
+
+
 
 
 [返回上一级](../../README.md)

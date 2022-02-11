@@ -1,7 +1,22 @@
 [返回主目录](../../README.md)
 
 
-# 知识点总结
+- [1. 知识点总结](#1-知识点总结)
+- [2. 常用库总结和技巧总结(如需实列，请跳转到具体页面查看)](#2-常用库总结和技巧总结如需实列请跳转到具体页面查看)
+- [3. pyenv使用](#3-pyenv使用)
+  - [3.1. 安装](#31-安装)
+  - [3.2. pyenv-virtualenv插件安装](#32-pyenv-virtualenv插件安装)
+  - [3.3. pyenv-virtualenv 使用](#33-pyenv-virtualenv-使用)
+  - [3.4. 常用命令](#34-常用命令)
+- [4. 简繁体转换 使用opencc 或者 opencc-python-reimplemented](#4-简繁体转换-使用opencc-或者-opencc-python-reimplemented)
+  - [4.1. sys.stderr.write(f"ERROR: {exc}")](#41-sysstderrwriteferror-exc)
+  - [4.2. _ctypes](#42-_ctypes)
+  - [4.3. Could not build the ssl module!](#43-could-not-build-the-ssl-module)
+- [5. requests 的一些用法](#5-requests-的一些用法)
+  - [5.1. session的使用](#51-session的使用)
+  - [5.2. 错误处理](#52-错误处理)
+
+# 1. 知识点总结
 * type 类型提示
 ```python
 from typing import List, Dict
@@ -18,7 +33,7 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
 ```
 
 
-# 常用库总结和技巧总结(如需实列，请跳转到具体页面查看)
+# 2. 常用库总结和技巧总结(如需实列，请跳转到具体页面查看)
 * [re正则模块总结](../../examples/useful_python/examples_jupyter/re.ipynb)
     * match     ：从开头匹配
     * search    ：在字符串中返回匹配的第一个结果
@@ -55,8 +70,8 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
     
 
 
-# pyenv使用
-## 安装
+# 3. pyenv使用
+## 3.1. 安装
 ```
     1.安装环境
     ubuntu:
@@ -80,14 +95,14 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
     source ~/.bashrc
     exec "$SHELL"
 ```
-## pyenv-virtualenv插件安装
+## 3.2. pyenv-virtualenv插件安装
 ```
     git clone git://github.com/yyuu/pyenv-virtualenv.git ~/pyenv/plugins/pyenv-virtualenv
     或者：git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
     echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
     source ~/.bash_profile
 ```
-## pyenv-virtualenv 使用
+## 3.3. pyenv-virtualenv 使用
 ```
     pyenv virtualenv 版本号 name   创建一个虚拟环境,命名为name 创建好后可通过pyenv versions来查看
     pyenv activate name  切换到name虚拟环境中
@@ -97,7 +112,7 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
     window下激活python虚拟环境:
     Set-ExecutionPolicy RemoteSigned
 ```
-## 常用命令
+## 3.4. 常用命令
 ```
     1.安装特定版本 
         * 使用代理需要先设置 export PYTHON_CONFIGURE_OPTS="--disable-ipv6"
@@ -106,7 +121,7 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
     
 
 
-# 简繁体转换 使用opencc 或者 opencc-python-reimplemented
+# 4. 简繁体转换 使用opencc 或者 opencc-python-reimplemented
 ```
     pip install opencc-python-reimplemented
     https://pypi.org/project/opencc-python-reimplemented/
@@ -114,13 +129,13 @@ new_vector = scale(2.0, ["10", "20", "30"], {"a": 10})
 
 
 **# 常见错误
-## sys.stderr.write(f"ERROR: {exc}")
+## 4.1. sys.stderr.write(f"ERROR: {exc}")
 ```
    python2升级pip后报错：
    解决：sudo easy_install pip==20.3.4
 ```
 
-## _ctypes
+## 4.2. _ctypes
 ```
 CentOS7 编译时出现
 Failed to build these modules:
@@ -128,21 +143,21 @@ _ctypes
 安装libffi-devel依赖包即可: yum install libffi-devel
 ```
 
-## Could not build the ssl module!
+## 4.3. Could not build the ssl module!
 ```
 1. 下载ssl 模块: https://www.openssl.org/source/  或者直接yum install openssl
 2. yum install openssl-devel
 ```
 
 
-# requests 的一些用法
-## session的使用
+# 5. requests 的一些用法
+## 5.1. session的使用
 ```text
 session = requests.Session()
 session.headers.update(headers)
 ```
 
-## 错误处理
+## 5.2. 错误处理
 ```
 1. Error--requests.exceptions.ProxyError: 该报错为系统代理原因. 手动设置代理, 或者如下设置都可以
 session.trust_env = False

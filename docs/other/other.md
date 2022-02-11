@@ -112,6 +112,7 @@
 - [32. wsl windows  win10 上linux安装和使用连接](#32-wsl-windows--win10-上linux安装和使用连接)
 - [33. strapi破解](#33-strapi破解)
 - [34. node 安装](#34-node-安装)
+- [35. r](#35-r)
 
 
 
@@ -694,7 +695,7 @@ create database  hope CHARSET=UTF8;
 ```
   git config --global http.proxy "127.0.0.1:4780"
   
-  或在配置文件中添加如下配置
+  或在配置文件中添$$  $$加如下配置
   [https]
 	proxy = https://127.0.0.1:10809
   [http]
@@ -972,7 +973,7 @@ ln -s /root/files/node_v12.22.9/bin/node /usr/bin/node
 ln -s /root/file/node.js/lib/node_modules/pm2/bin/pm2 /usr/local/bin
 ```
 
-#
+# 35. r
 requests 库的proxies 中 http和https
 
 

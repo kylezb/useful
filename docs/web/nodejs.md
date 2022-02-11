@@ -1,8 +1,15 @@
 
 
+- [1. npm和yarn命令对比](#1-npm和yarn命令对比)
+- [2. nodejs 升级](#2-nodejs-升级)
+- [3. npm 安装不上的时候 删除/root/.npm目录下的文件看下](#3-npm-安装不上的时候-删除rootnpm目录下的文件看下)
+- [4. 一些环境变量设置](#4-一些环境变量设置)
+- [5. uncaughtException 原因](#5-uncaughtexception-原因)
+- [6. async包的用法](#6-async包的用法)
+  - [6.1. series](#61-series)
 
 
-# npm和yarn命令对比
+# 1. npm和yarn命令对比
 ```
 npm install						->  yarn
 npm install react --save		->  yarn add react
@@ -12,7 +19,7 @@ npm update --save				->  yarn upgrade
 ```
 
 
-# nodejs 升级
+# 2. nodejs 升级
 ```
     第一步：
     curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
@@ -27,10 +34,10 @@ npm update --save				->  yarn upgrade
 ```
 
 
-# npm 安装不上的时候 删除/root/.npm目录下的文件看下
+# 3. npm 安装不上的时候 删除/root/.npm目录下的文件看下
 
 
-# 一些环境变量设置
+# 4. 一些环境变量设置
 ```
 
     // 关闭https认证
@@ -45,7 +52,7 @@ npm update --save				->  yarn upgrade
 ```
 
 
-# uncaughtException 原因
+# 5. uncaughtException 原因
 ```
 const Promise = require('bluebird')
 
@@ -67,8 +74,8 @@ a()
 ```
 
 
-# async包的用法
-## series 
+# 6. async包的用法
+## 6.1. series 
 ```
     var async = require('async');
 

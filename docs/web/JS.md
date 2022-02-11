@@ -4,7 +4,7 @@
 - [2. 数组遍历：](#2-数组遍历)
 - [3. Array:](#3-array)
 - [4. 正则的使用](#4-正则的使用)
-  - [exec 正则提取字符串](#exec-正则提取字符串)
+  - [4.1. exec 正则提取字符串](#41-exec-正则提取字符串)
 - [5. Js中读取Json文件](#5-js中读取json文件)
 - [6. 对象转换为Json字符串，和Json字符串转换成js对象](#6-对象转换为json字符串和json字符串转换成js对象)
 - [7. 数组去重](#7-数组去重)
@@ -25,9 +25,14 @@
   - [14.1. hasOwnProperty(判断自身属性与继承属性)](#141-hasownproperty判断自身属性与继承属性)
 - [15. 随机数 m-n的随机数，不包括n](#15-随机数-m-n的随机数不包括n)
 - [16. 常用函数](#16-常用函数)
-  - [16.1. encodeURIComponent(***) 用于url的加密](#161-encodeuricomponent-用于url的加密)
-  - [16.2.](#162)
-- [sleep 等待5s](#sleep-等待5s)
+- [17. sleep 等待5s](#17-sleep-等待5s)
+- [18. commonjs 和 es6的 import 和 export](#18-commonjs-和-es6的-import-和-export)
+  - [18.1. commonjs 的 import 和 export](#181-commonjs-的-import-和-export)
+  - [18.2. es6的import和export](#182-es6的import和export)
+- [19. 空值运算符  leftExpr ?? rightExpr](#19-空值运算符--leftexpr--rightexpr)
+- [20. prototype __proto__ constructor](#20-prototype-proto-constructor)
+- [21. (0 , function)(param)](#21-0--functionparam)
+- [22. main函数](#22-main函数)
 
 
 # 1. js对象拷贝  
@@ -164,7 +169,7 @@
       }
       
     ```
-## exec 正则提取字符串
+## 4.1. exec 正则提取字符串
 ```
     * 使用指定的正则表达式模式去字符串中查找匹配项，并以数组形式返回，如果未查找到则返回null
     * 原型：regExp.exec(stringObj)
@@ -478,7 +483,7 @@
 
 
 
-# sleep 等待5s
+# 17. sleep 等待5s
 ```
     const Promise = require('bluebird')
     await Promise.delay(5*1000)
@@ -488,14 +493,14 @@
 ```
 
 
-# commonjs 和 es6的 import 和 export
-## commonjs 的 import 和 export
+# 18. commonjs 和 es6的 import 和 export
+## 18.1. commonjs 的 import 和 export
 ```js
 module.exports = {a,b,c}
 exports.counter = counter;
 var b = require('b');
 ```
-## es6的import和export
+## 18.2. es6的import和export
 ```js
 
 // nodejs 中要使用es6模块需要在package.json中添加 "type": "module"
@@ -512,7 +517,7 @@ import { lastName as surname } from './profile.js';
 
 ```
 
-# 空值运算符  leftExpr ?? rightExpr
+# 19. 空值运算符  leftExpr ?? rightExpr
 ```js
 if(value??'' !== ''){
     
@@ -524,7 +529,7 @@ if(value !== null && value !== undefined && value !== ''){
 }
 ```
 
-# prototype __proto__ constructor
+# 20. prototype __proto__ constructor
 ```
 1. 我们需要牢记两点：①__proto__和constructor属性是对象所独有的；② prototype属性是函数所独有的，因为函数也是一种对象，所以函数也拥有__proto__和constructor属性。
 
@@ -548,14 +553,14 @@ console.log(Function.prototype === Function.prototype);//true
 console.log(Function.prototype.__proto__ === Object.prototype);//true
 ```
 
-# (0 , function)(param) 
+# 21. (0 , function)(param) 
 ```javascript
 简单来说就是改变了function的this指向, 将this指向了全局
 https://blog.csdn.net/qq_39446719/article/details/103838706
 ```
 
 
-# main函数
+# 22. main函数
 ```javascript
 // main.js / main.ts (the filename doesn't matter)
 

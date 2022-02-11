@@ -1,7 +1,12 @@
+- [1. 二次开发](#1-二次开发)
+  - [1.1. policy](#11-policy)
+  - [1.2. controllers](#12-controllers)
+  - [1.3. queries 查询](#13-queries-查询)
+  - [1.4. model](#14-model)
+  - [1.5. 常用的工具类和函数](#15-常用的工具类和函数)
 
-
-# 二次开发
-## policy
+# 1. 二次开发
+## 1.1. policy
 * policy可以添加的目录
 ```
 api或插件上policy
@@ -20,7 +25,7 @@ global::is-authenticated
 
 ```
 
-## controllers
+## 1.2. controllers
 * 自定义的函数必须是async函数
 * 第一个参数必须是ctx
 * routes.json文件中handler字段指定了使用哪个controllers
@@ -28,11 +33,11 @@ global::is-authenticated
 "handler":"Hello.index"// 表明使用controllers下Hello.js文件中的index函数
 ```
 
-## queries 查询
+## 1.3. queries 查询
 * strapi.query('modelName', 'pluginName')
 * 定制一些特殊查询, 需要访问model, strapi.query(modelName, plugin).model;
 
-## model
+## 1.4. model
 * model的文件要小写
 * strapi.models / strapi.api.**.models 可以访问具体model
 * settings.json文件中的globalId,  用于全局可访问的名字, 如果没有指定,就以文件名来确认
@@ -59,7 +64,7 @@ ORMModel.lifecycles.afterCreate(newCustomEntry.toJSON());
 ```
 
 
-## 常用的工具类和函数
+## 1.5. 常用的工具类和函数
 strapi-utils中的
 ```
 * parseMultipartData(...) 解析表单

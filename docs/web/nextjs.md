@@ -1,6 +1,12 @@
+- [1. 获取数据](#1-获取数据)
+- [2. 样式](#2-样式)
+  - [2.1. _app.js](#21-_appjs)
+  - [2.2. _document.js](#22-_documentjs)
+  - [2.3. link](#23-link)
+  - [2.4. useRouter](#24-userouter)
+  - [2.5. 使用配置中的内容](#25-使用配置中的内容)
 
-
-# 获取数据
+# 1. 获取数据
 * getStaticProps(context) 
 ```
 服务端运行的函数, 在构建时候生成所有数据
@@ -96,24 +102,24 @@
 ```
 
 
-# 样式
+# 2. 样式
 * 全局样式需要在page下创建_app.js进行导入
 
-## _app.js
+## 2.1. _app.js
 ```
 1. 定义页面通用布局
 2. 给页面注入额外公共数据
 3. 导入全局样式、通用错误处理等
 ```
 
-## _document.js
+## 2.2. _document.js
 ```
 1. 只会在服务端渲染时调用
 
 ```
 
 
-## link
+## 2.3. link
 ```
 import Link from 'next/link'
 
@@ -121,7 +127,7 @@ import Link from 'next/link'
 <Link href="/about" />
 ```
 
-## useRouter
+## 2.4. useRouter
 ```
 import { useRouter } from 'next/router'
 const router = useRouter()
@@ -130,7 +136,7 @@ console.log(router.pathname)
 output: /about
 ```
 
-## 使用配置中的内容
+## 2.5. 使用配置中的内容
 ``` js
 # 在next.config.js文件中配置
 module.exports = {
