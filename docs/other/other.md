@@ -112,7 +112,6 @@
 - [32. wsl windows  win10 上linux安装和使用连接](#32-wsl-windows--win10-上linux安装和使用连接)
 - [33. strapi破解](#33-strapi破解)
 - [34. node 安装](#34-node-安装)
-- [35. r](#35-r)
 
 
 
@@ -214,6 +213,7 @@
         * 停在进程：supervisorctl stop xxxx
         * 重启进程：supervisorctl restart xxxx
         * 停止服务：supervisorctl shutdown 要进入配置文件中启动
+        * 重新加载配置: supervisorctl update 添加或者删除配置有需要update一下
         * 启动服务：supervisord -c /work/supervisor/supervisord.conf
     * 配置样例
         ```
@@ -973,8 +973,7 @@ ln -s /root/files/node_v12.22.9/bin/node /usr/bin/node
 ln -s /root/file/node.js/lib/node_modules/pm2/bin/pm2 /usr/local/bin
 ```
 
-# 35. r
-requests 库的proxies 中 http和https
+
 
 
 

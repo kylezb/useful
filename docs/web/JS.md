@@ -33,6 +33,8 @@
 - [20. prototype __proto__ constructor](#20-prototype-proto-constructor)
 - [21. (0 , function)(param)](#21-0--functionparam)
 - [22. main函数](#22-main函数)
+- [23. 文件和目录的一些操作](#23-文件和目录的一些操作)
+  - [23.1. 删除文件](#231-删除文件)
 
 
 # 1. js对象拷贝  
@@ -571,6 +573,12 @@ function main() {
 if (require.main === module) {
   main();
 }
+```
+
+# 23. 文件和目录的一些操作
+## 23.1. 删除文件
+```
+fs.unlinkSync(path)
 ```
 
 [返回主目录](../../README.md)

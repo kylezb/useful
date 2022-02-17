@@ -4,6 +4,12 @@
   - [1.3. queries 查询](#13-queries-查询)
   - [1.4. model](#14-model)
   - [1.5. 常用的工具类和函数](#15-常用的工具类和函数)
+- [2. Roles & Permissins](#2-roles--permissins)
+  - [2.1. Authenticated 角色](#21-authenticated-角色)
+  - [2.2. 设置jwt时间](#22-设置jwt时间)
+- [3. ctx上的一些变量](#3-ctx上的一些变量)
+  - [3.1. 认证的用户变量](#31-认证的用户变量)
+  - [3.2. body数据](#32-body数据)
 
 # 1. 二次开发
 ## 1.1. policy
@@ -73,4 +79,42 @@ strapi-utils中的
 ```
 
 
+
+
+# 2. Roles & Permissins
+## 2.1. Authenticated 角色
+```
+1. 创建用户时候的默认角色.
+2. 创建用户的默认角色可以在 advanced settings 页面设置
+```
+## 2.2. 设置jwt时间
+```js
+// path: ./config/plugins.js
+
+module.exports = ({ env }) => ({
+  // ...
+  'users-permissions': {
+    config: {
+      jwt: {
+        expiresIn: '7d',
+      },
+    },
+  },
+  // ...
+});
+```
+
+
+
+
+
+# 3. ctx上的一些变量
+## 3.1. 认证的用户变量
+```js
+ const { id } = ctx.state.user;
+```
+## 3.2. body数据
+```js
+ctx.request.body
+```
 
