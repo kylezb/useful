@@ -1,6 +1,8 @@
 [返回主目录](../../README.md)
 
 - [1. js对象拷贝](#1-js对象拷贝)
+  - [1.1. 使用loadsh](#11-使用loadsh)
+  - [1.2. 原生](#12-原生)
 - [2. 数组遍历：](#2-数组遍历)
 - [3. Array:](#3-array)
 - [4. 正则的使用](#4-正则的使用)
@@ -8,7 +10,7 @@
 - [5. Js中读取Json文件](#5-js中读取json文件)
 - [6. 对象转换为Json字符串，和Json字符串转换成js对象](#6-对象转换为json字符串和json字符串转换成js对象)
 - [7. 数组去重](#7-数组去重)
-- [8. 读取本地文件](#8-读取本地文件)
+- [8. html中读取本地文件](#8-html中读取本地文件)
 - [9. 方括号 和花括号[], {}](#9-方括号-和花括号-)
 - [10. async await Promise](#10-async-await-promise)
   - [10.1. 参考资料](#101-参考资料)
@@ -35,9 +37,24 @@
 - [22. main函数](#22-main函数)
 - [23. 文件和目录的一些操作](#23-文件和目录的一些操作)
   - [23.1. 删除文件](#231-删除文件)
+  - [23.2. 读取文件](#232-读取文件)
 
 
 # 1. js对象拷贝  
+
+## 1.1. 使用loadsh
+```js
+// 1. 浅拷贝: 
+var objects = [{ 'a': 1 }, { 'b': 2 }];
+var shallow = _.clone(objects);
+console.log(shallow[0] === objects[0]);
+// 2. 深拷贝
+var objects = [{ 'a': 1 }, { 'b': 2 }];
+var deep = _.cloneDeep(objects);
+console.log(deep[0] === objects[0]);
+
+```
+## 1.2. 原生
     浅拷贝： 
     ```js
     <!-- Object.assign -->
@@ -231,11 +248,16 @@
     
 
 # 7. 数组去重
-```
+```js
     Array.from( new Set(data.map( d => d['日期']) )); 
+
+    _.uniq(array)
+
+    // 去重后排序
+    _.sortedUniq(array) 
 ```
 
-# 8. 读取本地文件
+# 8. html中读取本地文件
 ```
 
     # html中使用
@@ -287,7 +309,7 @@
     3.比起星号和yield，更好的语义
     4.await命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时会自动转成立即 resolved 的 Promise 对象）
     5.await必须写在async函数中
-    6.async函数内部return语句返回的值，会成为then方法回调函数的参数。
+    6.async函数内部return语句返回的值，会成为then方法回调函数的参数。但是注意如果Promise中是resolve函数的返回值才会作为then的调用, return只是中断接下来的执行
 ```
 ## 10.3. await 关键字 只能放在 async 函数内部， await关键字的作用 就是获取 Promise中返回的内容， 获取的是Promise函数中resolve或者reject的值, 等待异步函数的执行结果。
 ```
@@ -577,8 +599,12 @@ if (require.main === module) {
 
 # 23. 文件和目录的一些操作
 ## 23.1. 删除文件
-```
+```js
 fs.unlinkSync(path)
+```
+## 23.2. 读取文件
+```js
+fs.readFileSync('./data.json')
 ```
 
 [返回主目录](../../README.md)

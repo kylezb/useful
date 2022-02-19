@@ -7,6 +7,8 @@
 - [2. Roles & Permissins](#2-roles--permissins)
   - [2.1. Authenticated 角色](#21-authenticated-角色)
   - [2.2. 设置jwt时间](#22-设置jwt时间)
+- [API 查询](#api-查询)
+  - [使用qs库进行参数的构造](#使用qs库进行参数的构造)
 - [3. ctx上的一些变量](#3-ctx上的一些变量)
   - [3.1. 认证的用户变量](#31-认证的用户变量)
   - [3.2. body数据](#32-body数据)
@@ -14,7 +16,19 @@
 # 1. 二次开发
 ## 1.1. policy
 * policy可以添加的目录
-```
+```ages that match this slug
+  console.log("slug", slug)
+  const gqlEndpoint = getStrapiURL("/graphql")
+  const pagesRes = await fetch(gqlEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        fragment FileParts on UploadFileEntityResponse {
+          data {
+            id
 api或插件上policy
 添加目录: ./api/**/config/policies -> 代码访问:strapi.api.**.config.policies 或者 strapi.plugins.**.config.policies 访问
 
@@ -104,6 +118,34 @@ module.exports = ({ env }) => ({
 });
 ```
 
+
+# API 查询
+## 使用qs库进行参数的构造
+```js
+const qs = require('qs');
+const query = qs.stringify({
+  sort: ['title:asc'],
+  filters: {
+    title: {
+      $eq: 'hello',
+    },
+  },
+  populate: '*',
+  fields: ['title'],
+  pagination: {
+    pageSize: 10,
+    page: 1,
+  },
+  publicationState: 'live',
+  locale: ['en'],
+}, {
+  encodeValuesOnly: true, // prettify url
+});
+
+await request(`/api/books?${query}`);
+// GET /api/books?sort[0]=title%3Aasc&filters[title][$eq]=hello&populate=%2A&fields[0]=title&pagination[pageSize]=10&pagination[page]=1&publicationState=live&locale[0]=en
+ 
+```
 
 
 

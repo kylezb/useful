@@ -1,5 +1,5 @@
 
-
+来看看, 你能答几题? 答案都在其他md文档中
 
 # mongo
 ## mongo的update修改如何使用? 在第二个参数如果不使用$set参数会有什么后果?
@@ -21,3 +21,37 @@
 
 
 # python requests库如何设置代理, 比如本地有一个http的代理, 那么如何设置代理?
+
+
+# 正则表达式
+
+
+# nodejs中await 后面如果跟一个数值、字符串和布尔值会怎么样?
+
+# nodejs中调用async 函数返回的是什么?
+
+
+# nodejs async 中return的返回值可在then中使用吗? new Promise()中的return返回值可在then中使用吗?
+
+
+# nodejs
+```
+声明了一个promise, 如何调用如下p1?
+const p1 = new Promise(function (resolve, reject) {
+        setTimeout(() => reject(new Error('fail')), 3000)
+})
+是await p1, p1.then(), 还是await p1(), p1().then()?
+```
+
+# nodejs hasOwnProperty是干什么的?
+
+
+# 如何设置linux开机启动?
+
+
+
+# redis相关问题
+
+
+# header中的application/json和application/x-www-form-urlencoded区别?
+

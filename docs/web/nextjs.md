@@ -5,6 +5,8 @@
   - [2.3. link](#23-link)
   - [2.4. useRouter](#24-userouter)
   - [2.5. 使用配置中的内容](#25-使用配置中的内容)
+- [getInitialProps](#getinitialprops)
+  - [返回一个对象, 在页面函数中可以解析出来它的值](#返回一个对象-在页面函数中可以解析出来它的值)
 
 # 1. 获取数据
 * getStaticProps(context) 
@@ -151,3 +153,21 @@ const { publicRuntimeConfig } = getConfig()
 publicRuntimeConfig.API_URL
 ```
 
+
+
+
+# getInitialProps
+## 返回一个对象, 在页面函数中可以解析出来它的值
+```js
+
+// 
+const MyApp = ({ Component, router, a, b }) => {console.log(a, b)}
+
+
+MyApp.getInitialProps = async (appContext) => {
+  return {
+    a:'10',
+    b:'20
+  }
+}
+```
