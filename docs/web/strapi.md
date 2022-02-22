@@ -7,11 +7,13 @@
 - [2. Roles & Permissins](#2-roles--permissins)
   - [2.1. Authenticated 角色](#21-authenticated-角色)
   - [2.2. 设置jwt时间](#22-设置jwt时间)
-- [API 查询](#api-查询)
-  - [使用qs库进行参数的构造](#使用qs库进行参数的构造)
-- [3. ctx上的一些变量](#3-ctx上的一些变量)
-  - [3.1. 认证的用户变量](#31-认证的用户变量)
-  - [3.2. body数据](#32-body数据)
+- [3. API 查询](#3-api-查询)
+  - [3.1. 使用qs库进行参数的构造](#31-使用qs库进行参数的构造)
+- [4. ctx上的一些变量](#4-ctx上的一些变量)
+  - [4.1. 认证的用户变量](#41-认证的用户变量)
+  - [4.2. body数据](#42-body数据)
+- [5. restful 接口](#5-restful-接口)
+  - [5.1. 关联表查询, populate](#51-关联表查询-populate)
 
 # 1. 二次开发
 ## 1.1. policy
@@ -119,8 +121,8 @@ module.exports = ({ env }) => ({
 ```
 
 
-# API 查询
-## 使用qs库进行参数的构造
+# 3. API 查询
+## 3.1. 使用qs库进行参数的构造
 ```js
 const qs = require('qs');
 const query = qs.stringify({
@@ -150,13 +152,27 @@ await request(`/api/books?${query}`);
 
 
 
-# 3. ctx上的一些变量
-## 3.1. 认证的用户变量
+# 4. ctx上的一些变量
+## 4.1. 认证的用户变量
 ```js
  const { id } = ctx.state.user;
 ```
-## 3.2. body数据
+## 4.2. body数据
 ```js
 ctx.request.body
 ```
 
+
+
+
+
+# 5. restful 接口
+## 5.1. 关联表查询, [populate](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#component-dynamic-zones)
+```
+1. 查询全部关联用 populate=*, 这样只能查询一级关联内容
+
+2. 查询二级关联内容
+    比如:有一张global表, 其中metadata字段是关联字段, 且在metadata中shareImage又是关联字段, 查询出这个字段可以用下面2个语句
+    http://localhost:1337/api/global?populate[metadata][populate][0]=shareImage
+    http://localhost:1337/api/global?populate[0]=metadata.shareImage
+```

@@ -5,8 +5,9 @@
   - [2.3. link](#23-link)
   - [2.4. useRouter](#24-userouter)
   - [2.5. 使用配置中的内容](#25-使用配置中的内容)
-- [getInitialProps](#getinitialprops)
-  - [返回一个对象, 在页面函数中可以解析出来它的值](#返回一个对象-在页面函数中可以解析出来它的值)
+- [3. getInitialProps](#3-getinitialprops)
+  - [3.1. 返回一个对象, 在页面函数中可以解析出来它的值](#31-返回一个对象-在页面函数中可以解析出来它的值)
+- [4. next-seo](#4-next-seo)
 
 # 1. 获取数据
 * getStaticProps(context) 
@@ -112,6 +113,8 @@
 1. 定义页面通用布局
 2. 给页面注入额外公共数据
 3. 导入全局样式、通用错误处理等
+
+如果有getInitialProps函数, 那么每个页面都会变成服务端渲染, automatic static optimization会被关闭
 ```
 
 ## 2.2. _document.js
@@ -156,8 +159,8 @@ publicRuntimeConfig.API_URL
 
 
 
-# getInitialProps
-## 返回一个对象, 在页面函数中可以解析出来它的值
+# 3. getInitialProps
+## 3.1. 返回一个对象, 在页面函数中可以解析出来它的值
 ```js
 
 // 
@@ -171,3 +174,6 @@ MyApp.getInitialProps = async (appContext) => {
   }
 }
 ```
+
+
+# 4. next-seo
