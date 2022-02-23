@@ -1,4 +1,8 @@
 - [1. 获取数据](#1-获取数据)
+  - [1.1. getStaticProps(context)](#11-getstaticpropscontext)
+  - [1.2. getStaticPaths()](#12-getstaticpaths)
+  - [1.3. getServerSideProps()](#13-getserversideprops)
+  - [1.4. next/image](#14-nextimage)
 - [2. 样式](#2-样式)
   - [2.1. _app.js](#21-_appjs)
   - [2.2. _document.js](#22-_documentjs)
@@ -10,30 +14,32 @@
 - [4. next-seo](#4-next-seo)
 
 # 1. 获取数据
-* getStaticProps(context) 
+## 1.1. getStaticProps(context) 
 ```
 服务端运行的函数, 在构建时候生成所有数据
-传入参数:context包含:
+1. 传入参数:context包含:
     1. params, 从 getStaticPaths 获取的数据
     2. preview
     3. previewData
     4. locale
     5. locales 
     6. defaultLocale 
-    7. redirect  
-        redirect : {
-        destination: '/',
-        permanent: false,
-      }
     
-返回值:
+2. 返回值:
     1. props, 一个对象, 其中包含具体的数据
     2. revalidate 从新生成页面时间, 比如设置为 10, 那么10秒内的数据都用上回缓存的, 当10秒后的第一个请求到来, 后端会重新生成页面.
     3. notFound : boolean, 返回404状态
+    4. redirect  
+        redirect : {
+          destination: '/',
+          permanent: false,
+          // statusCode: 301
+        }
 
+3. 可以在该函数中读取文件, 使用process.cwd()
 ```
 
-* getStaticPaths()
+## 1.2. getStaticPaths()
 ```
 用于生成动态路径
 1. pages/posts/[id].js 可用以下返回
@@ -84,11 +90,11 @@
         }
     3. blocking, 对于未返回的新路径, 会等待服务端生成新页面,然后显示, 生成的新页面会加入到预渲染列表中, 下回请求直接使用预渲染的. 不会更新页面如果要更新结合revalidate使用
     
-    
+    4. 使用 router.isFallback 可以判断当前页面是否是fallback
 
 ```
 
-* getServerSideProps() 
+## 1.3. getServerSideProps() 
 ```
 服务端渲染函数, 在每回请求的时候生成数据
 参数和getStaticProps类似, 多以下几个:
@@ -99,7 +105,7 @@
 ```
 
 
-* next/image
+## 1.4. next/image
 ```
 属性: layout="fill" , 图片的宽度和高度会被拉伸到 父元素的尺寸, 也就是说如果父元素没有空间了, 那么不会显示出图片
 ```
@@ -114,7 +120,7 @@
 2. 给页面注入额外公共数据
 3. 导入全局样式、通用错误处理等
 
-如果有getInitialProps函数, 那么每个页面都会变成服务端渲染, automatic static optimization会被关闭
+如果有getInitialProps函数, automatic static optimization会在没有getStaticProps的页面关闭
 ```
 
 ## 2.2. _document.js

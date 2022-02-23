@@ -13,7 +13,7 @@
   - [1.12. 元素居中](#112-元素居中)
 - [2. 文字垂直居中](#2-文字垂直居中)
   - [2.1. 文字两端对齐：](#21-文字两端对齐)
-  - [18.1. animation-fill-mode属性值](#181-animation-fill-mode属性值)
+  - [2.2. animation-fill-mode属性值](#22-animation-fill-mode属性值)
 - [3. flex 布局](#3-flex-布局)
   - [3.1. 使用flex布局后，图片变小，变形](#31-使用flex布局后图片变小变形)
 - [4. 文本多余用省略号，隐藏多余文本](#4-文本多余用省略号隐藏多余文本)
@@ -26,6 +26,7 @@
   - [8.3. 查看tailwind齐全的配置文档](#83-查看tailwind齐全的配置文档)
   - [8.4. 实时查看编译的css](#84-实时查看编译的css)
   - [8.5. 3.0特性](#85-30特性)
+  - [8.6. 如果pycharm没有自动补全tailwindcss](#86-如果pycharm没有自动补全tailwindcss)
 
 
 # 1. css
@@ -315,6 +316,11 @@ npm run postcss:watch
 5. Arbitrary properties
 ```
 
+
+## 8.6. 如果pycharm没有自动补全tailwindcss
+```
+npm install tailwindcss --save
+```
 
 
 

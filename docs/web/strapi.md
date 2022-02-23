@@ -14,6 +14,10 @@
   - [4.2. body数据](#42-body数据)
 - [5. restful 接口](#5-restful-接口)
   - [5.1. 关联表查询, populate](#51-关联表查询-populate)
+- [6. 国际化i18n](#6-国际化i18n)
+- [7. 动态类型的查询](#7-动态类型的查询)
+  - [7.1. restful中可以通过__component字段知道当前动态类型的名字](#71-restful中可以通过__component字段知道当前动态类型的名字)
+  - [7.2. graphql中可以通过__typename字段知道当前动态类型的名字](#72-graphql中可以通过__typename字段知道当前动态类型的名字)
 
 # 1. 二次开发
 ## 1.1. policy
@@ -176,3 +180,18 @@ ctx.request.body
     http://localhost:1337/api/global?populate[metadata][populate][0]=shareImage
     http://localhost:1337/api/global?populate[0]=metadata.shareImage
 ```
+
+
+
+# 6. 国际化i18n
+```
+1. local 字段将会被加上
+2. localizations, 通过populate=* 查询出来, 是一个数组, 有{id:**, attribute:**}, 其中id是其他语言的文章id
+```
+
+
+
+# 7. 动态类型的查询
+
+## 7.1. restful中可以通过__component字段知道当前动态类型的名字
+## 7.2. graphql中可以通过__typename字段知道当前动态类型的名字

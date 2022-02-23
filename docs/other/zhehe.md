@@ -55,3 +55,8 @@ const p1 = new Promise(function (resolve, reject) {
 
 # header中的application/json和application/x-www-form-urlencoded区别?
 
+
+# http 状态码301 302代表什么?
+
+
+# 假设一个域名绑定的海外ip无妨访问了, 那么可能是哪几种情况?
