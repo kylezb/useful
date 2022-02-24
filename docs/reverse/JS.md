@@ -16,7 +16,10 @@
   - [4.2. python 中调用nodejs文件](#42-python-中调用nodejs文件)
 - [5. 变量生成的hook](#5-变量生成的hook)
   - [5.1. 简单的直接通过油候脚本hook](#51-简单的直接通过油候脚本hook)
-  - [5.2. 需要通过fiddler修改js文件,将如下代码加入js中](#52-需要通过fiddler修改js文件将如下代码加入js中)
+  - [5.2. 5.2.函数的基本hook](#52-52函数的基本hook)
+  - [5.3. 对象的hook](#53-对象的hook)
+  - [5.4. 原型函数的hook](#54-原型函数的hook)
+  - [5.5. Object.defineProperty在网站中定义了一次后, 后续就无法在定义,](#55-objectdefineproperty在网站中定义了一次后-后续就无法在定义)
 - [6. 过程记录](#6-过程记录)
   - [6.1. F12，右键反调试](#61-f12右键反调试)
 - [7. chrome 中技巧](#7-chrome-中技巧)
@@ -29,9 +32,12 @@
 - [11. 扣代码心得](#11-扣代码心得)
 - [12. webpack](#12-webpack)
   - [12.1. 特征标识](#121-特征标识)
-  - [12.2. 如何扣代码](#122-如何扣代码)
-- [13. 错误记录](#13-错误记录)
-  - [13.1. execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character](#131-execjs报错-unicodeencodeerror-gbk-codec-cant-encode-character)
+  - [12.2. bota函数定义](#122-bota函数定义)
+  - [12.3. 如何扣代码](#123-如何扣代码)
+- [13. 一些函数使用](#13-一些函数使用)
+  - [13.1. 数组解码](#131-数组解码)
+- [14. 错误记录](#14-错误记录)
+  - [14.1. execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character](#141-execjs报错-unicodeencodeerror-gbk-codec-cant-encode-character)
 
 # 1. 搜索关键字
 
@@ -152,11 +158,38 @@ a = function(){
 
 ## 5.1. 简单的直接通过油候脚本hook
 
-## 5.2. 需要通过fiddler修改js文件,将如下代码加入js中
-
+## 5.2. 5.2.函数的基本hook
+```js
+old_fun = func
+func = function(argument){
+    mytask
+    return old_fun.apply(argument)
+}
+func.prototype = ... // 需要修改一些函数的原型, 比如toString, 等 防止检测
 ```
-  Object.defineProperty(_,"*", {})
+## 5.3. 对象的hook
+```js
+old_attr = obj.attr
+Object.defineProperty(obj, 'attr', {
+    get: function(){
+        return old_attr
+    },
+    set: function(val){
+        return ...
+    },
+}) 
 ```
+## 5.4. 原型函数的hook
+```js
+let a = '1234'
+String.prototype.split_old = String.prototype.split
+String.prototype.split = function(val){
+     debugger   
+     return String.prototype.split_old(val)
+}
+a.split('2')
+```
+## 5.5. Object.defineProperty在网站中定义了一次后, 后续就无法在定义,
 
 # 6. 过程记录
 
@@ -217,21 +250,12 @@ apply的第二个参数是数组, call是常规的用逗号分割开来的.
 # 11. 扣代码心得
 ```javascript
 1. 遇到如果函数没有传参数的直接使用返回值看看. (可以将值替换到源码中看运行结果)
-2. 
+2. 注意try catch, 或者一些条件分支的地方, 防止蜜罐和内存爆破
+3. 注意delete的地方, 防止window这些变量被删除
+4. 扣代码的时候最好取运行时的数据, 比如有个初始化定义的数组, 在运行中改变了, 扣代码的时候扣的是初始化的时候, 就会有问题.
+
 ```
 
-
-
-
-window.btoa = window.btoa ? window.btoa : function btoa(str) {
-    var buffer;
-    if (str instanceof Buffer) {
-        buffer = str;
-    } else {
-        buffer = Buffer.from(str.toString(), 'binary');
-    }
-    return buffer.toString('base64');
-}
 
 
 
@@ -258,15 +282,45 @@ var e = {
 // 或者加载模块是个数组
 var e = [函数1, 函数2]
 ```
-## 12.2. 如何扣代码
+
+## 12.2. bota函数定义
+```js
+window.btoa = window.btoa ? window.btoa : function btoa(str) {
+    var buffer;
+    if (str instanceof Buffer) {
+        buffer = str;
+    } else {
+        buffer = Buffer.from(str.toString(), 'binary');
+    }
+    return buffer.toString('base64');
+}
+
+```
+## 12.3. 如何扣代码
 ```
 一般是将加载器抠出来, 然后加载的模块缺啥补啥
 ```
 
+# 13. 一些函数使用
+## 13.1. 数组解码
+```js
+let utf8decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
 
+let u8arr = new Uint8Array([240, 160, 174, 183]);
+let i8arr = new Int8Array([-16, -96, -82, -73]);
+let u16arr = new Uint16Array([41200, 47022]);
+let i16arr = new Int16Array([-24336, -18514]);
+let i32arr = new Int32Array([-1213292304]);
 
-# 13. 错误记录
-## 13.1. execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character
+console.log(utf8decoder.decode(u8arr));
+console.log(utf8decoder.decode(i8arr));
+console.log(utf8decoder.decode(u16arr));
+console.log(utf8decoder.decode(i16arr));
+console.log(utf8decoder.decode(i32arr));
+```
+
+# 14. 错误记录
+## 14.1. execjs报错 UnicodeEncodeError: 'gbk' codec can't encode character
 ```javascript
 // 将文件的打开编码重新定义下
 import subprocess

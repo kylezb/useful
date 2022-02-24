@@ -112,6 +112,9 @@
 - [32. wsl windows  win10 上linux安装和使用连接](#32-wsl-windows--win10-上linux安装和使用连接)
 - [33. strapi破解](#33-strapi破解)
 - [34. node 安装](#34-node-安装)
+- [35. 网络状态](#35-网络状态)
+- [36. URI 和 URL](#36-uri-和-url)
+- [37. HTTP报文组成](#37-http报文组成)
 
 
 
@@ -973,7 +976,31 @@ ln -s /root/files/node_v12.22.9/bin/node /usr/bin/node
 ln -s /root/file/node.js/lib/node_modules/pm2/bin/pm2 /usr/local/bin
 ```
 
+# 35. 网络状态
+```text
+tcp连接的3次握手, 客户端产生2个状态: SYN_SEND, ESTABLISHED. 服务端产生2个状态:SYN_RCVD, 和 ESTABLISHED
+tcp断开4次挥手, 客户端的3个状态: FIN_WAIT_1, FIN_WAIT_2, TIME_WAIT. 服务端产生3个状态: CLOSE_WAIT, LAST_ACK, CLOSED
+```
 
+
+# 36. URI 和 URL
+```
+URI: 统一资源标识符, 可以理解为资源的唯一身份证
+URL: 统一资源定位符. 就是地址栏中的内容
+```
+
+# 37. HTTP报文组成
+```
+请求报文构成
+1. 请求行：包括请求方法、URL、协议/版本
+2. 请求头(Request Header)
+3. 请求正文
+响应报文构成
+1. 状态行
+2. 响应头
+3. 响应正文
+
+```
 
 
 

@@ -60,3 +60,12 @@ const p1 = new Promise(function (resolve, reject) {
 
 
 # 假设一个域名绑定的海外ip无妨访问了, 那么可能是哪几种情况?
+
+# chrome preserve log有什么作用?
+
+
+
+# uri和url是什么?
+
+
+# https的tls, 为什么安全?

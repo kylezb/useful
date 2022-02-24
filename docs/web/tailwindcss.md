@@ -11,8 +11,13 @@
     - [2.2.1. items-center  纵轴对齐](#221-items-center--纵轴对齐)
   - [2.3. flex 横轴上的操作](#23-flex-横轴上的操作)
     - [2.3.1. justify-between](#231-justify-between)
-- [排版](#排版)
-  - [whitespace-pre-line](#whitespace-pre-line)
+- [3. flex 通用](#3-flex-通用)
+  - [3.1. flex-shrink flex-shrink-0](#31-flex-shrink-flex-shrink-0)
+- [4. 排版](#4-排版)
+  - [4.1. whitespace-pre-line](#41-whitespace-pre-line)
+- [边框类](#边框类)
+  - [border-gray-200 设置颜色](#border-gray-200-设置颜色)
+  - [border-b-2 设置边框底部宽度](#border-b-2-设置边框底部宽度)
 
 
 
@@ -132,10 +137,17 @@ npm run postcss:watch
 </div>
 ```
 
+# 3. flex 通用
+## 3.1. flex-shrink flex-shrink-0
+```
+使用 flex-shrink 允许一个 flex 项目在必要的时候缩小
+使用 flex-shrink-0 阻止一个 flex 项目缩小
+```
 
 
-# 排版
-## whitespace-pre-line
+
+# 4. 排版
+## 4.1. whitespace-pre-line
 ```html
 <!-- 空格将会被删除, 换行会被保留 -->
 <div class="w-3/4 ">
@@ -150,7 +162,9 @@ You will never know.
 
 
 
-
+# 边框类
+## border-gray-200 设置颜色
+## border-b-2 设置边框底部宽度
 
 
 

@@ -179,6 +179,9 @@ ctx.request.body
     比如:有一张global表, 其中metadata字段是关联字段, 且在metadata中shareImage又是关联字段, 查询出这个字段可以用下面2个语句
     http://localhost:1337/api/global?populate[metadata][populate][0]=shareImage
     http://localhost:1337/api/global?populate[0]=metadata.shareImage
+
+3. 查询二级的所有内容:(navbar是个component, 其中又有其他component组件)
+    http://localhost:1337/api/global?populate[navbar][populate]=*
 ```
 
 
