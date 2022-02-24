@@ -16,6 +16,7 @@
   - [5.1. session的使用](#51-session的使用)
   - [5.2. 错误处理](#52-错误处理)
 - [6. 星号](#6-星号)
+- [发送 Content-Type: multipart/form-data; boundary=2e064a2022424f36aa765541c811d0d3的请求](#发送-content-type-multipartform-data-boundary2e064a2022424f36aa765541c811d0d3的请求)
 
 # 1. 知识点总结
 * type 类型提示
@@ -193,6 +194,40 @@ test2(a=10, b=22, c=30)
 1. 单星号(*)用于解析数组变量, 如果作用到了字典上, 会将字典的keys解析出来. 双星号(**)用于解析字典变量.
 2. 对于函数的参数定义: 单星号(*)表示当前参数接收所有列表参数, 双星号(**)表示当前参数接收所有关键字参数
 3. 一般用于函数定义, 函数调用, [], {} 中
+
+```
+
+# 发送 Content-Type: multipart/form-data; boundary=2e064a2022424f36aa765541c811d0d3的请求
+```python
+
+# pip install requests-toolbelt
+import requests
+from requests_toolbelt.multipart.encoder import MultipartEncoder
+
+proxies = {
+    "http": "http://127.0.0.1:8888",
+    "https": "http://127.0.0.1:8888",
+}
+headers = {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+    "Referer": "http://app.yjglj.sh.gov.cn/xzsp/DispatchAction.do?efFormEname=CXFW0102",
+    "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundarygmHpU6AdOmQPE19B",
+    "Host": "app.yjglj.sh.gov.cn",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
+}
+form_data = MultipartEncoder(
+    fields={
+        "method": 'queryWhscxk',
+        "params": '{"companyName": "", "registrationNumber": "沪WH安许证字[2021]0001"}'
+    },
+    # boundary='----WebKitFormBoundarygmHpU6AdOmQPE19B'
+)
+headers.update({'Content-Type': form_data.content_type})
+res = requests.post("http://app.yjglj.sh.gov.cn/xzsp/wxGzhServlet", data=form_data,
+                    headers=headers, timeout=10, proxies=proxies)
+print(res.text)
 
 ```
 
