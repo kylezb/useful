@@ -362,11 +362,13 @@ const myClick = useCallback(() => {
 ## 21.1. dom节点监听事件, 并调用相应函数
 ```js
 export function useOnClickOutside(ref, handler) {
+  // ref是一个dom节点, handler是一个函数, 事件处理后需要触发的函数
   useEffect(() => {
     const listener = (event) => {
       console.log(ref.current, "ref.current", event.target)
       // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target)) {
+        // 判断当前这个事件的节点是不是监听的节点
         return
       }
 
