@@ -212,7 +212,7 @@ headers = {
     "Accept": "*/*",
     "Accept-Encoding": "gzip, deflate, br",
     "Accept-Language": "zh-CN,zh;q=0.9",
-    "Referer": "http://app.yjglj.sh.gov.cn/xzsp/DispatchAction.do?efFormEname=CXFW0102",
+    "Referer": "http://baidu.com",
     "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundarygmHpU6AdOmQPE19B",
     "Host": "app.yjglj.sh.gov.cn",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
@@ -225,7 +225,7 @@ form_data = MultipartEncoder(
     # boundary='----WebKitFormBoundarygmHpU6AdOmQPE19B'
 )
 headers.update({'Content-Type': form_data.content_type})
-res = requests.post("http://app.yjglj.sh.gov.cn/xzsp/wxGzhServlet", data=form_data,
+res = requests.post("http://baidu.com", data=form_data,
                     headers=headers, timeout=10, proxies=proxies)
 print(res.text)
 

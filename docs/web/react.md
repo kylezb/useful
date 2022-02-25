@@ -132,7 +132,7 @@ dangerouslySetInnerHTML={{__html:item }}
 
 
 
-## 18.2. react-transition-group  
+## 18.1. react-transition-group  
   key：CSSTransition  
   文档地址：http://reactcommunity.org/react-transition-group/css-transition
 
@@ -143,11 +143,11 @@ dangerouslySetInnerHTML={{__html:item }}
 
 
 
-## 18.5. reset.css (https://meyerweb.com/eric/tools/css/reset/) 用于统一pc端样式
+## 18.2. reset.css (https://meyerweb.com/eric/tools/css/reset/) 用于统一pc端样式
 
 
 
-## 18.6. styled-components使用总结
+## 18.3. styled-components使用总结
 ```css
   /* 空 直接是标签名表示当前下的标签 . 所有的子class  
   &. 同级的class  
@@ -185,7 +185,7 @@ dangerouslySetInnerHTML={{__html:item }}
 
 
 
-## 18.7. 更改tdk(title, description, keywords)
+## 18.4. 更改tdk(title, description, keywords)
     ```
         document.title = detail.get("china_name")+ " 电影资讯";
         document.querySelector('meta[name="keywords"]').setAttribute('content',`${detail.get("china_name")}  ${detail.get("english_name")} 剧情 电影详情 电影简介`);
@@ -193,7 +193,7 @@ dangerouslySetInnerHTML={{__html:item }}
     ```
 
 
-## 18.8. seo react-snap使用
+## 18.5. seo react-snap使用
     ```
         "scripts": {
         "start": "react-scripts start",
@@ -356,14 +356,45 @@ const myClick = useCallback(() => {
 也可以填写一个空值, 表明该函数一直不会变,也可以填写一些变量进去,表明只有当这些变量变了,才会变.
 ```
 
-# 21. 小tips
+
+
+# 21. 有用的函数
+## 21.1. dom节点监听事件, 并调用相应函数
+```js
+export function useOnClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      console.log(ref.current, "ref.current", event.target)
+      // Do nothing if clicking ref's element or descendent elements
+      if (!ref.current || ref.current.contains(event.target)) {
+        return
+      }
+
+      handler(event)
+    }
+
+    document.addEventListener("mousedown", listener)
+    document.addEventListener("touchstart", listener)
+
+    return () => {
+      document.removeEventListener("mousedown", listener)
+      document.removeEventListener("touchstart", listener)
+    }
+  }, [ref, handler])
+}
+```
+
+
+
+
+# 22. 小tips
 
 * [在线模拟接口平台](https://www.fastmock.site/)
 
 * fiddler 接口测试测试  
   ![avatar](../imgs/fiddler_auto_response.png)
 
-# 22. 在线demo
+# 23. 在线demo
 
 * [styled-component 中使用antd](https://codesandbox.io/s/antd-styled-components-owzd9)
 
