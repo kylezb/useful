@@ -15,8 +15,12 @@
   - [3.3. 允许从node_modules加载css样式](#33-允许从node_modules加载css样式)
 - [4. next/image的使用](#4-nextimage的使用)
   - [4.1. 加载本地图片](#41-加载本地图片)
-  - [4.2. 属性](#42-属性)
-    - [placeholder](#placeholder)
+  - [4.2. domains配置](#42-domains配置)
+  - [4.3. Priority](#43-priority)
+  - [4.4. 图片的宽高](#44-图片的宽高)
+  - [给图片进行style](#给图片进行style)
+  - [4.5. 属性](#45-属性)
+    - [4.5.1. placeholder](#451-placeholder)
 - [5. next-seo](#5-next-seo)
 
 # 1. 获取数据
@@ -218,11 +222,51 @@ import profilePic from '../public/me.png'
         // placeholder="blur" // Optional blur-up while loading
       />
 ```
-## 4.2. 属性
-### placeholder
-```
+
+## 4.2. domains配置
+```js
+// 在配置文件中设置哪些域名是允许访问的
+module.exports = {
+  images: {
+    domains: ['assets.vercel.com'],
+  },
+}
 
 ```
+
+## 4.3. Priority
+```js
+// 对于LCP的优化, 指明当前内容为高优先级, 优先加载.
+<Image
+  src="/me.png"
+  alt="Picture of the author"
+  width={500}
+  height={500}
+  priority
+/>
+```
+
+## 4.4. 图片的宽高
+```js
+图片的宽高必须指定, 这样会优化cls, 如果没有指定, 可以使用layout='fill'
+```
+
+## 给图片进行style
+```js
+1. 该<Image>结构都是一个<img>标签被<span>标签包裹
+2. 只需要在<Image> 上设置className, 该值会被传递给内部的<img>上
+3. 使用layout='fill'时，父元素必须有position: relative
+4. 使用layout='responsive'时，父元素必须有display: block, block是<div>默认的行为
+```
+
+## 4.5. 属性
+### 4.5.1. placeholder
+```
+当图片还没有加载完成的时候是有占位的模糊图片, 如果有, 需要配合blurDataURL填写模糊图片的地址
+```
+
+
+
 
 
 
