@@ -11,7 +11,13 @@
   - [2.5. 使用配置中的内容](#25-使用配置中的内容)
 - [3. getInitialProps](#3-getinitialprops)
   - [3.1. 返回一个对象, 在页面函数中可以解析出来它的值](#31-返回一个对象-在页面函数中可以解析出来它的值)
-- [4. next-seo](#4-next-seo)
+  - [3.2. 添加全局样式](#32-添加全局样式)
+  - [3.3. 允许从node_modules加载css样式](#33-允许从node_modules加载css样式)
+- [4. next/image的使用](#4-nextimage的使用)
+  - [4.1. 加载本地图片](#41-加载本地图片)
+  - [4.2. 属性](#42-属性)
+    - [placeholder](#placeholder)
+- [5. next-seo](#5-next-seo)
 
 # 1. 获取数据
 ## 1.1. getStaticProps(context) 
@@ -181,5 +187,44 @@ MyApp.getInitialProps = async (appContext) => {
 }
 ```
 
+#样式
+## 3.2. 添加全局样式
+```test
+直接在_app.js文件中import
+比如有一个styles.css文件的样式, 那么在_app.js文件import './styles.css' 文件就相当于引入
+```
+## 3.3. 允许从node_modules加载css样式
 
-# 4. next-seo
+
+
+# 4. next/image的使用
+```
+优点:
+1. 更快的性能
+2. 视图更加稳定, 防止cls发生
+3. 更快的记载速度, 提供模糊图片的占位符
+4. 多种访问图片的方式
+```
+## 4.1. 加载本地图片
+```js
+// 图片的宽高会自动导入
+import profilePic from '../public/me.png'
+<Image
+        src={profilePic}
+        alt="Picture of the author"
+        // width={500} automatically provided
+        // height={500} automatically provided
+        // blurDataURL="data:..." automatically provided
+        // placeholder="blur" // Optional blur-up while loading
+      />
+```
+## 4.2. 属性
+### placeholder
+```
+
+```
+
+
+
+
+# 5. next-seo

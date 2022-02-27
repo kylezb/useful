@@ -69,3 +69,6 @@ const p1 = new Promise(function (resolve, reject) {
 
 
 # https的tls, 为什么安全?
+
+# nodejs的严格模式是什么?
+https://es6.ruanyifeng.com/#docs/module-loader#ES6-%E6%A8%A1%E5%9D%97%E4%B8%8E-CommonJS-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B7%AE%E5%BC%82

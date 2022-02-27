@@ -30,7 +30,9 @@
 - [17. sleep 等待5s](#17-sleep-等待5s)
 - [18. commonjs 和 es6的 import 和 export](#18-commonjs-和-es6的-import-和-export)
   - [18.1. commonjs 的 import 和 export](#181-commonjs-的-import-和-export)
-  - [18.2. es6的import和export](#182-es6的import和export)
+  - [18.2. commonjs特点](#182-commonjs特点)
+  - [18.3. es6的import和export](#183-es6的import和export)
+  - [18.4. commonjs和es6的差别](#184-commonjs和es6的差别)
 - [19. 空值运算符  leftExpr ?? rightExpr](#19-空值运算符--leftexpr--rightexpr)
 - [20. prototype __proto__ constructor](#20-prototype-proto-constructor)
 - [21. (0 , function)(param)](#21-0--functionparam)
@@ -524,7 +526,14 @@ module.exports = {a,b,c}
 exports.counter = counter;
 var b = require('b');
 ```
-## 18.2. es6的import和export
+## 18.2. commonjs特点
+```text
+所有代码都运行在模块作用域，不会污染全局作用域。
+模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，
+以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。
+模块加载的顺序，按照其在代码中出现的顺序。
+```
+## 18.3. es6的import和export
 ```js
 
 // nodejs 中要使用es6模块需要在package.json中添加 "type": "module"
@@ -539,6 +548,17 @@ export { firstName, lastName, year };
 import { firstName, lastName, year } from './profile.js';
 import { lastName as surname } from './profile.js';
 
+```
+## 18.4. commonjs和es6的差别
+```text
+1.CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用, 这是对于不可变类型. 对于Object, 或者数组这些变量导出的都是引用.
+    1. 比如模块导出了一个变量a = [1,2,3,4], CommonJS和es6导入这个变量, 然后对这个变量进行修改(比如a.push(1)), 那么模块中该变量都将会被修改, 且模块中的其他函数使用该变量a也是修改后的变量a
+    2. 比如模块内有一个全局变量a = [1,2,3,4], 如果模块内某个函数修改该变量(比如a.push(1)), 那么导出的a变量也将会是被修改后的值.
+    3. 同样对于如果是一个数值或者字符串, 比如导出了一个变量a = '123', 如果导出的变量a在模块内部的其他函数中被修改了, 那么使用commonjs导出的还是原始值, 但是模块内部该值已经被修改. 同样的如果直接修改导出的变量a, 那么模块内部该值是没有改变的, 如果要正确的获取该变量, 需要在模块中使用函数返回或者设置值.
+    4. 同样对于如果是一个数值或者字符串, 比如导出了一个变量a = '123', 如果导出的变量a在模块内部的其他函数中被修改了, 那么使用es导出的值也是修改过后的值, 同样的如果直接修改导出的变量a, 那么是无法进行修改的.
+    总结: 通过上诉4个现象, 可以看出commonjs对于数值或者字符串类型导出的是一个拷贝, 且修改导出的值和模块内部是独立的. 而es导出的是一个引用, 不可修改, 变量始终和模块内的值保持一致, . 而如果导出的是一个可变类型,比如object, 或者数组, 那么二者的变现都一样, 都是导出的引用, 模块内外的修改都是一致的. 造成这个的原因可能和变量的所在位置有关系, 前者在栈上, 后者在堆上?
+
+2.CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
 ```
 
 # 19. 空值运算符  leftExpr ?? rightExpr
